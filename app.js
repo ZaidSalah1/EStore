@@ -9,42 +9,39 @@ const port = process.env.PORT || 1001;
 const BASE_URL = process.env.BASE_URL || ""; // Define a base URL from env variables
 
 
-// Using connection connectioning
-const connection = mysql.createPool({
+app.use(express.json());
+
+
+// const connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '', // Fixed typo
+//     database: 'ecommerce store'
+// });
+const connection = mysql.createConnection({
     host: process.env.DB_HOST,  // Set by Render
     user: process.env.DB_USER,  // Set by Render
     password: process.env.DB_PASSWORD,  // Set by Render
-    database: process.env.DB_NAME,  // Set by Render
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-     connectTimeout: 10000
+    database: process.env.DB_NAME  // Set by Render
 });
 
-// Check connection
-connection.getConnection((err, connection) => {
+
+connection.connect((err) => {
     if (err) {
         console.log("Error connection: ", err.stack);
         return;
     } else {
-        console.log("Connected to the database!");
-        connection.release(); // Release connection back to connection
+        console.log("Connected!!!");
     }
 });
 
-// Example endpoint to fetch products
-app.get('/products', (req, res) => {
-    connection.query('SELECT * FROM products', (err, results) => {
-        if (err) {
-            console.error("Error fetching products:", err);
-            return res.status(500).json({ error: 'Error fetching products' });
-        }
-        res.json(results);
-    });
+// Serve static files from the 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Optional: Explicitly serve index.html
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
-
-app.use(express.json());
 
 
 // Configure multer for file uploads
@@ -57,7 +54,9 @@ const storage = multer.diskStorage({
     }
 });
 
+
 const upload = multer({ storage: storage });
+
 
 // Serve uploaded files
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
@@ -75,17 +74,67 @@ app.post("/upload-image", upload.single("file"), (req, res) => {
     res.json({ url: fileUrl });
 });
 
+// Storage configuration for ads images
+const adsStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "public/uploads/ads"); // Save ads images in 'uploads/ads'
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
 
+const uploadAds = multer({ storage: adsStorage });
 
-// Serve static files from the 'public' folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.post("/upload-ads-image", uploadAds.single("file"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+    }
 
-// Optional: Explicitly serve index.html
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get("host")}`;
+    const fileUrl = `${baseUrl}/uploads/ads/${req.file.filename}`;
+
+    res.json({ url: fileUrl });
 });
 
 
+// API to upload the ad image and insert ad details into the database
+app.post('/upload-ads', uploadAds.single('file'), (req, res) => {
+    if (!req.file || !req.body.ad_type) {
+        return res.status(400).json({ error: "File or ad type missing" });
+    }
+
+    const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get("host")}`;
+    const fileUrl = `${baseUrl}/uploads/ads/${req.file.filename}`;
+    const adType = req.body.ad_type;
+
+    const query = 'INSERT INTO ads (image_url, ad_type) VALUES (?, ?)';
+
+    connection.query(query, [fileUrl, adType], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: "Database error", details: err });
+        }
+        res.status(200).json({ message: "Ad uploaded successfully", adId: result.insertId, imageUrl: fileUrl });
+    });
+});
+
+
+
+
+
+app.get("/productsCount", (req, res) => {
+    const sql = "SELECT COUNT(*) AS product_count FROM products;";
+
+    connection.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error fetching product count, ", err);
+            return res.status(500).json({ message: "Internal Server Error" });
+        }
+
+        // Send the product count as a response
+        res.json({ product_count: results[0].product_count });
+    });
+});
 
 
 app.get("/products", (req, res) => {
@@ -640,6 +689,19 @@ app.get("/orders", (req, res) => {
     });
 });
 
+app.get("/orderTotal", (req, res) => {
+    const sql = "SELECT COUNT(*) AS order_count FROM orders;";
+
+    connection.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error fetching order count, ", err);
+            return res.status(500).json({ message: "Internal Server Error" });
+        }
+
+        // Send the order count as a response
+        res.json({ order_count: results[0].order_count });
+    });
+});
 
 app.get("/ordersCount", (req, res) => {
 
