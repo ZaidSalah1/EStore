@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTech</title>
+    <link rel="icon" type="image/png" href="img/store icon.png">
+    <!--File Css-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fav.css">
+    <!--Font Awesom-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <img class="WhatsApp_icon" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="">
+
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container top-nav">
+            <a href="#" class="logo"><img src="img/logov2.png" alt=""></a>
+            <div class="searchContainer">
+                <form action="" class="search">
+                    <input type="search" placeholder="Search for product">
+                    <button type="submit">Search</button>
+                </form>
+                <div class="searchDropdown">
+
+                </div>
+            </div>
+
+
+            <div class="test">
+
+
+                <div class="cart_header">
+                    <div class="icon_language">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="language">ENG</span>
+                    </div>
+                </div>
+
+                <div class="cart_header">
+                    <div class="icon_fav">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="count_fav">0</span>
+                    </div>
+                </div>
+
+                <div class="cart_header">
+                    <div onclick="open_cart()" class="icon_cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="count_item">0</span>
+                    </div>
+                </div>
+
+
+                <div class="total_price">
+                    <p>My Cart:</p>
+                    <p class="price_cart_head">$0</p>
+                </div>
+            </div>
+
+
+        </div>
+
+        </div>
+
+        <nav>
+            <div class="links container">
+                <i onclick="open_menu()" class="fa-solid fa-bars btn_open_menu"></i>
+                <ul id="menu">
+                    <span onclick="close_menu()" class="bg_overlay"></span>
+                    <i onclick="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
+                    <img class="logo_menu" src="img/logo-black.png" alt="">
+                    <li class="active"><a href="index.html">home</a></li>
+                    <li><a href="all_product.html">all product</a></li>
+                    <li><a href="">about us</a></li>
+                    <li><a href="">contact</a></li>
+                </ul>
+
+                <div class="loging_signup">
+                    <a href="login.html">login <i class="fa-solid fa-right-to-bracket"></i></a>
+                    <a href="#">sign up <i class="fa-solid fa-user-plus"></i></a>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- <div class="features_row">
+        <div class="feature1">
+            <img src="img/features1.png" alt="">
+            <div class="feature_text">
+                <h1>Free Shipping</h1>
+                <p>Free Shippin on all order</p>
+            </div>
+        </div>
+
+        <div class="feature1">
+            <img src="img/features2.png" alt="">
+            <div class="feature_text">
+                <h1>Money Guarantee</h1>
+                <p>30 Day Money Back Guarantee</p>
+            </div>
+        </div>
+
+        <div class="feature1">
+            <img src="img/features3.png" alt="">
+            <div class="feature_text">
+                <h1>Online Support 24/7</h1>
+                <p>Technical Support Stand By</p>
+            </div>
+        </div>
+
+        <div class="feature1">
+            <img src="img/features4.png" alt="">
+            <div class="feature_text">
+                <h1>Secure Payment</h1>
+                <p>All Payment Method Are Accepted</p>
+            </div>
+        </div>
+
+        <div class="feature1">
+            <img src="img/features5.png" alt="">
+            <div class="feature_text">
+                <h1>Member Discount</h1>
+                <p>Upto 40% Discount All Product</p>
+            </div>
+        </div>
+
+    </div> -->
+
+
+    <div class="fav_products" id="fav_products">
+        
+    </div>
+
+
+
+    <footer>
+        <div class="container">
+            <div class="big_row">
+                <img src="img/logo-white.png" alt="">
+            <div class="hotline">
+                <i class="fa-solid fa-headset"></i>
+                <div class="text">
+                    <h5>Hotline free 24/24:</h5>
+                    <h6>(+100) 123 123 123</h6>
+                </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur 
+                adipisicing elit. Voluptas dolores officiis natus omnis mollitia aut. Accusantium fugit ducimus pariatur quisquam ratione quae ad dolorem 
+                odio ullam architecto sed, omnis praesentium.</p>
+            </div>
+    
+            <div class="row">
+                <h4>FAQs & Help</h4>
+                <div class="links">
+                    <a href="#">F.A.Q.'s</a>
+                    <a href="#">Ordering Tracking</a>
+                    <a href="#">Contacts</a>
+                    <a href="#">Events</a>
+                    <a href="#">Help Center</a>
+                </div>
+            </div>
+    
+            <div class="row">
+                <h4>Shipping & Delivery</h4>
+                <div class="links">
+                    <a href="#">Delivery Information</a>
+                    <a href="#">Discount</a>
+                    <a href="#">Payment & Shipping</a>
+                    <a href="#">Estimated Delivery Time</a>
+                    <a href="#">Shipping Guid</a>
+                </div>
+            </div>
+    
+            <div class="row">
+                <h4>Information</h4>
+                <div class="links">
+                    <a href="#">Populer</a>
+                    <a href="#">Our Services</a>
+                    <a href="#">Your Account</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms & Condition</a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="bottom_footer">
+            <div class="container">
+                <p>Copyright &copy;<span>Topico.</span> all Rights Reserved</p>
+                <div class="payment_img">
+                    <img src="img/payment-1.png" alt="">
+                    <img src="img/payment-2.png" alt="">
+                    <img src="img/payment-3.png" alt="">
+                    <img src="img/payment-4.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/items_home.js" type="module"></script>
+<script src="js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+
+            <div class="searchContainer">
+                <form action="" class="search">
+                    <input type="search" id="searchInput" placeholder="Search for product">
+                    <button type="submit">Search</button>
+                </form>
+                <div class="searchDropdown">
+
+                </div>
+            </div>
+
+            <a href="#" class="logo"><img src="img/logov2.png" alt=""></a>
+        </div>
+    </header>
+
+    <div class="menu">
+        <div class="container">
+            <div class="top_icon">
+                <h1><i class="fa-solid fa-cart-shopping"></i> Store</h1>
+            </div>
+
+            <div class="menu_item" id="dashboardMenu">
+                <h2><i class="fa-solid fa-chart-pie"></i> Dashboard</h2>
+            </div>
+
+            <div class="menu_item" id="productsMenu">
+                <h2><i class="fa-solid fa-box-archive"></i> Products</h2>
+
+            </div>
+
+            <div class="menu_item" id="orders">
+                <h2><i class="fa-solid fa-truck"></i> Orders</h2>
+            </div>
+
+            <div class="menu_item" id="messages">
+                <h2><i class="fa-solid fa-envelope"></i> Messages <span class="msg">14</span></h2>
+            </div>
+
+
+            <div class="menu_item" id="messages">
+                <h2><i class="fa-solid fa-users"></i> Customers</h2>
+            </div>
+
+            <div class="menu_item" id="messages">
+                <h2><i class="fas fa-file-alt"></i> Repoerts</h2>
+            </div>
+
+            <p>Help & Support</p>
+
+
+
+
+            <div class="menu_item" id="messages">
+                <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+            </div>
+
+
+
+            <div class="menu_item" id="messages">
+                <h2><i class="fa-solid fa-arrow-right-from-bracket"></i> logout</h2>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Dashboard Section  -->
+    <div class="stats" id="stats">
+        <h1>DASHBOARD</h1>
+        <div class="row_stat">
+            <div class="products menu_item" id="productsCount">
+                <h1>Products <i class="fa-solid fa-cart-shopping"></i></h1>
+                <h1 class="count">??</h1>
+            </div>
+
+            <div class="view">
+                <h1>Views <i class="fa-regular fa-eye"></i></h1>
+                <div><span id="pageViewsCount">Loading...</span></div>
+            </div>
+
+            <div class="products">
+                <h1>Sales <i class="fa-solid fa-chart-line"></i></h1>
+                <h1 class="count">50</h1>
+            </div>
+
+            <div class="products">
+                <h1>Revenue <i class="fa-solid fa-dollar-sign"></i></h1>
+                <h1 class="count">$1000</h1>
+            </div>
+        </div>
+
+
+
+        <div class="cahrts-dashboard">
+            <h2>Sales Overview</h2>
+            <div class="chart_row">
+
+                <div class="chart-container">
+                    <canvas id="salesChart"></canvas>
+                    <p>Top 5 Selling Products</p>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="salesChart2"></canvas>
+                    <p>Monthly Sales Overview</p>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="table-container">
+            <h1>Recent Payments</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Product Name</th>
+                        <th>Amount</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Laptop</td>
+                        <td>2</td>
+                        <td>123-456-7890</td>
+                        <td>john@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Mobile Phone</td>
+                        <td>1</td>
+                        <td>098-765-4321</td>
+                        <td>jane@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Laptop</td>
+                        <td>2</td>
+                        <td>123-456-7890</td>
+                        <td>john@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Mobile Phone</td>
+                        <td>1</td>
+                        <td>098-765-4321</td>
+                        <td>jane@example.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+    <!-- Products Section -->
+    <div class="products-section" id="products-section" style="display: none;">
+
+        <h1>Products</h1>
+
+        <div class="add_product">
+            <div class="add">
+                <div class="plus">+</div>
+            </div>
+        </div>
+
+
+        <div id="products_dev" class="products_dev">
+            <!-- Product items will be added here dynamically -->
+
+
+        </div>
+    </div>
+
+
+
+    <div class="orders-section" id="orders-section" style="display: none">
+
+        <div class="order-list">
+
+        </div>
+    </div>
+
+  
+
+    <!-- Modal for adding product -->
+    <div id="addProductModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Product</h2>
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label for="productName">Product Name:</label>
+                    <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productType">Product Type:</label>
+                    <div class="dropdown">
+                        <input type="text" id="productType" name="productType" placeholder="Type or select product type"
+                            required autocomplete="off" onclick="toggleDropdown()">
+                        <div class="dropdown-list" id="dropdownList">
+                            <div class="dropdown-item" onclick="selectType('Coller')">Coller</div>
+                            <div class="dropdown-item" onclick="selectType('CPU')">CPU</div>
+                            <div class="dropdown-item" onclick="selectType('Keyboard')">Keyboard</div>
+                            <div class="dropdown-item" onclick="selectType('Headset')">Headset</div>
+                            <div class="dropdown-item" onclick="selectType('Monitor')">Monitor</div>
+                            <div class="dropdown-item" onclick="selectType('Mouse')">Mouse</div>
+                            <div class="dropdown-item" onclick="selectType('Case')">Case</div>
+                            <div class="dropdown-item" onclick="selectType('Graphics Card')">Graphics Card</div>
+                            <div class="dropdown-item" onclick="selectType('Motherboard')">Motherboard</div>
+                            <div class="dropdown-item" onclick="selectType('Storage')">Storage</div>
+                            <div class="dropdown-item" onclick="selectType('RAM')">RAM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productPrice">Product Price:</label>
+                    <input type="number" id="productPrice" name="productPrice" placeholder="Enter product price"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDisPrice">Product Discount Price:</label>
+                    <input type="number" id="productDisPrice" name="productDisPrice"
+                        placeholder="Optional discount price">
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">Product Description:</label>
+                    <input type="text" id="productDescription" name="productDescription"
+                        placeholder="Enter product description" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productQuantity">Product Quantity:</label>
+                    <input type="number" id="productQuantity" name="productQuantity"
+                        placeholder="Enter product quantity" required>
+                </div>
+
+                <!-- Image input options -->
+
+
+
+                <div class="form-group">
+                    <label>Product Image:</label>
+                    <div class="image-options">
+                        <div>
+                            <label for="productImageUrlMain">Image URL (Main image):</label>
+                            <input type="url" id="productImageUrlMain" name="productImageUrlMain"
+                                placeholder="Enter image URL">
+                        </div>
+                        <div class="form-group">
+                            <label for="productImageMain">Upload Image (Main image):</label>
+                            <input type="file" id="productImageMain" name="productImageMain" accept="image/*">
+                        </div>
+                    </div>
+
+                    <!-- Main Image Preview (specific to main image) -->
+                    <div id="mainImagePreviewContainer" class="image-preview-container"></div>
+
+                    <div class="image-options">
+                        <div>
+                            <label for="productImageUrl">Image URL:</label>
+                            <input type="url" id="productImageUrl" name="productImageUrl" placeholder="Enter image URL">
+                        </div>
+                        <div class="form-group">
+                            <label for="productImages">Upload Images:</label>
+                            <input type="file" id="productImages" name="productImages[]" accept="image/*" multiple>
+                        </div>
+                    </div>
+                    <!-- Container to display selected image previews -->
+                    <div id="imagePreviewContainer" class="image-preview-container"></div>
+                </div>
+
+                <button type="submit" class="btn-submit">Add Product</button>
+                <button type="submit" class="btn-edit">Edit Product</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('salesChart2').getContext('2d');
+
+            // Sample data for the top 5 selling products
+            const productNames = ['Jun', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];
+            const productSales = [500, 400, 350, 300, 250, 100, 10, 10];
+
+            // Creating the chart
+            new Chart(ctx, {
+                type: 'bar', // Choose between 'bar', 'line', 'pie', etc.
+                data: {
+                    labels: productNames,
+                    datasets: [{
+                        label: 'Top 5 Sales',
+                        data: productSales,
+                        backgroundColor: [
+                            '#4caf50', // Custom colors for each bar
+                            '#ff9800',
+                            '#f44336',
+                            '#2196f3',
+                            '#9c27b0',
+                            '#9c27b0',
+                            '#9c27b0',
+                            '#9c27b0',
+                            '#9c27b0',
+                            , '#9c27b0'
+                            , '#9c27b0'
+                            , '#9c27b0'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#333', // Customize axis text color
+                            },
+                            grid: {
+                                color: '#ddd', // Customize grid line color
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#333', // Customize axis text color
+                            },
+                            grid: {
+                                color: '#ddd', // Customize grid line color
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // Hide legend if not needed
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return `Sales: ${context.raw}`; // Customize tooltip text
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- <div class="back_to_top">
+    <p><i class="fa-solid fa-up-long"></i> Back to Top <i class="fa-solid fa-up-long"></i></p> 
+</div> -->
+
+    <script>
+        // Get the sidebar menu items
+        const menuItems = document.querySelectorAll('.menu_item');
+        document.querySelector('.btn-edit').style.display = 'none';
+        document.querySelector('.btn-submit').style.display = 'block';
+
+        // Get the content sections 
+        const dashboardContent = document.getElementById('stats');
+        const productsContent = document.getElementById('products-section');
+        const ordersContent = document.getElementById('orders-section');
+
+        const searchInputItem = document.getElementById('searchInput');
+
+        // Function to handle menu item click
+        function handleMenuClick(e) {
+            // Remove the active class from all menu items
+            menuItems.forEach(item => item.classList.remove('active'));
+
+            // Add the active class to the clicked menu item
+            e.target.closest('.menu_item').classList.add('active');
+
+            // Show the corresponding content
+            if (e.target.closest('#dashboardMenu')) {
+                dashboardContent.style.display = 'block';
+                productsContent.style.display = 'none';
+                ordersContent.style.display = 'none';
+                searchInputItem.placeholder = "Search for Products"
+            } else if (e.target.closest('#productsMenu')) {
+                dashboardContent.style.display = 'none';
+                productsContent.style.display = 'block';
+                ordersContent.style.display = 'none';
+                searchInputItem.placeholder = "Search for Products"
+            } else if (e.target.closest('#orders')) {
+                dashboardContent.style.display = 'none';
+                productsContent.style.display = 'none';
+                ordersContent.style.display = 'block';
+                searchInputItem.placeholder = "Search for Orders"
+            }
+        }
+
+        // Add event listeners to all menu items
+        menuItems.forEach(item => item.addEventListener('click', handleMenuClick));
+
+        // Set the default selected menu item and content on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select the default menu item (stats)
+            const defaultMenuItem = document.querySelector('#dashboardMenu'); // Adjust the selector as necessary
+            if (defaultMenuItem) {
+                defaultMenuItem.click(); // Simulate a click on the default menu item
+            }
+        });
+
+        // Add click functionality to productsCount
+        const productsCountDiv = document.getElementById('productsCount');
+        if (productsCountDiv) {
+            productsCountDiv.addEventListener('click', () => {
+                const productsMenu = document.getElementById('productsMenu');
+                if (productsMenu) {
+                    productsMenu.click();
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        // Get the modal element
+        const modal = document.getElementById('addProductModal');
+
+        // Get the button that opens the modal
+        const addProductBtn = document.querySelector('.add_product');
+
+        // Get the <span> element that closes the modal
+        const closeBtn = document.querySelector('.close');
+
+        // When the user clicks on the "Add Product" button, open the modal
+        addProductBtn.addEventListener('click', function () {
+            modal.style.display = 'flex'; // Show the modal
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.addEventListener('click', function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Form submit (you can handle product adding logic here)
+        const form = document.getElementById('addProductForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const productName = document.getElementById('productName').value;
+            const productPrice = document.getElementById('productPrice').value;
+            const productImage = document.getElementById('productImage').value;
+
+            // Add logic to save the product details or render the product
+            console.log('Product added:', productName, productPrice, productImage);
+
+            // Close modal after submitting
+            modal.style.display = 'none';
+        });
+
+    </script>
+
+    <img src="../uploads/" alt="">
+
+    <script>    
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 5000, // Delay between slides in milliseconds
+                    disableOnInteraction: false, // Autoplay will not be disabled after user interactions
+                },
+                // Uncomment this if you want pagination
+                // pagination: {
+                //     el: '.swiper-pagination',
+                //     clickable: true,
+                // },
+            });
+        });
+    </script>
+
+
+    <!-- JavaScript for Dynamic Modal Resizing (if needed) -->
+    <script>
+        window.addEventListener('resize', function () {
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.maxHeight = `${window.innerHeight * 0.9}px`; // 90% of viewport height
+            }
+        });
+
+    </script>
+
+
+    <script>
+        function toggleDropdown() {
+            const dropdownList = document.getElementById("dropdownList");
+            dropdownList.style.display = dropdownList.style.display === "block" ? "none" : "block";
+        }
+
+        // Close dropdown if clicked outside
+        document.addEventListener("click", function (event) {
+            const dropdownList = document.getElementById("dropdownList");
+            if (!event.target.closest('.dropdown')) {
+                dropdownList.style.display = "none";
+            }
+        });
+
+        // Function to select a product type
+        function selectType(type) {
+            document.getElementById("productType").value = type;
+            document.getElementById("dropdownList").style.display = "none"; // Hide dropdown after selection
+        }
+
+    </script>
+
+
+    <script>
+        // GEt the search input and the dropdown
+        const searchInput = document.querySelector('.search input');
+        const searchDropdown = document.querySelector('.searchDropdown');
+
+        searchInput.addEventListener('focus', () => {
+            searchDropdown.style.display = 'flex';
+        });
+
+        searchInput.addEventListener('blur', () => {
+            setTimeout(() => {
+                searchDropdown.style.display = 'none';
+            }, 100);
+        })
+
+    </script>
+
+
+<script type="module">
+    import { getDatabase, ref, get, child, update } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBTfykjKEJFbw4MT0VOpMuBl2vTZqN1a0E",
+        authDomain: "zaid-539bb.firebaseapp.com",
+        projectId: "zaid-539bb",
+        storageBucket: "zaid-539bb.appspot.com",
+        messagingSenderId: "493463305652",
+        appId: "1:493463305652:web:b346573eb59956f7dd06e1"
+    };
+
+    let orders = []; // Global array to hold all orders
+
+    // Function to fetch and display orders
+    function fetchAndDisplayOrders(filter = "All Orders") {
+        const db = getDatabase();
+        const ordersRef = ref(db, 'orders');
+
+        get(ordersRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    orders = []; // Reset the orders array
+                    snapshot.forEach((childSnapshot) => {
+                        const order = childSnapshot.val();
+                        order.id = childSnapshot.key; // Attach order ID for future use
+                        orders.push(order); // Add each order to the orders array
+                    });
+
+                    displayOrders(filter); // Display orders based on the selected filter
+                } else {
+                    console.log("No orders found.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching orders:", error);
+            });
+    }
+
+    // Function to display orders based on filter
+    function displayOrders(filter) {
+        const ordersSection = document.getElementById("orders-section");
+        ordersSection.style.display = 'block'; // Show the orders section
+        ordersSection.innerHTML = `
+            <h1>Orders</h1>
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button ${filter === "All Orders" ? "active" : ""}" data-filter="All Orders">All Orders</button>
+                    <button class="tab-button ${filter === "Pending" ? "active" : ""}" data-filter="Pending">Pending</button>
+                    <button class="tab-button ${filter === "Delivered" ? "active" : ""}" data-filter="Delivered">Delivered</button>
+                    <button class="tab-button ${filter === "Cancelled" ? "active" : ""}" data-filter="Cancelled">Cancelled</button>
+                </div>
+            </div>
+        `;
+
+        // Filter orders
+        const filteredOrders = orders.filter(order => 
+            filter === "All Orders" || order.status === filter
+        );
+
+        // Display each filtered order
+        filteredOrders.forEach((order) => {
+            const productNames = order.items.map(item => `- ${item.name}`).join('<br>');
+            const productImages = order.items.map(item => item.img);
+            const statusClass = `status-${order.status.toLowerCase().replace(' ', '-')}`;
+
+            const orderHTML = `
+                <div class="order_product">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            ${productImages.map(img => `<div class="swiper-slide"><img src="${img}" alt="Product Image"></div>`).join('')}
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="order_texts">
+                         <p><i class="fas fa-tag"></i> Product/s Name:</p>
+                            <div class="product-names-container">
+                                <span class="product-names">${productNames}</span>
+                            </div>
+                        <p><i class="fa-solid fa-user"></i> Customer Name: <span>${order.name}</span></p>
+                        <p><i class="fa-solid fa-map-marker-alt"></i> Address: <span>${order.address}</span></p>
+                        <p><i class="fa-solid fa-calendar"></i> Order Date: 
+                            <span>${new Date(order.orderDate).toLocaleDateString()} ${new Date(order.orderDate).toLocaleTimeString()}</span>
+                        </p>
+                        <p><i class="fas fa-cubes"></i> Quantity: <span>${order.items.reduce((sum, item) => sum + (isNaN(item.count) ? 0 : item.count), 0)}</span></p>
+                        <p><i class="fas fa-dollar-sign"></i> Total Price: <span>₪${order.totalPrice}</span></p>
+                        <p><i class="fas fa-barcode"></i> Order Id: <span>#${order.id}</span></p>
+                    </div>
+                    <div class="status">
+                        <div class="status-dropdown">
+                            <span class="current-status ${statusClass}">${order.status || 'Pending'}</span>
+                            <div class="dropdown-content">
+                                <p data-order-id="${order.id}" data-status="Pending">Pending</p>
+                                <p data-order-id="${order.id}" data-status="In Progress">In Progress</p>
+                                <p data-order-id="${order.id}" data-status="Delivered">Delivered</p>
+                                <p data-order-id="${order.id}" data-status="Cancelled">Cancelled</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <p><i class="fa-solid fa-envelope"></i> Email: <span>${order.email}</span></p>
+                        <p><i class="fa-solid fa-phone"></i>Phone: <span>${order.phone}</span></p>
+                    </div>
+                </div>
+            `;
+
+            ordersSection.innerHTML += orderHTML;
+        });
+
+        // Add event listeners to the dropdown items
+        const statusDropdownItems = ordersSection.querySelectorAll('.dropdown-content p');
+        statusDropdownItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const orderId = item.getAttribute('data-order-id');
+                const newStatus = item.getAttribute('data-status');
+                updateStatus(orderId, newStatus);
+            });
+        });
+
+        // Add event listeners to the tab buttons
+        const tabButtons = ordersSection.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedFilter = button.getAttribute('data-filter');
+                fetchAndDisplayOrders(selectedFilter);
+            });
+        });
+
+        // Initialize Swiper
+        const swiperContainers = ordersSection.querySelectorAll('.swiper-container');
+        swiperContainers.forEach(container => {
+            new Swiper(container, {
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        });
+    }
+
+    // Function to update the status of an order
+    function updateStatus(orderId, newStatus) {
+        const db = getDatabase();
+        const orderRef = ref(db, `orders/${orderId}`);
+        update(orderRef, { status: newStatus })
+            .then(() => {
+                console.log(`Status updated to ${newStatus} for order ID ${orderId}`);
+                fetchAndDisplayOrders("All Orders"); // Refresh the list
+            })
+            .catch((error) => {
+                console.error("Error updating status:", error);
+            });
+    }
+
+    // Fetch and display all orders on page load
+    document.addEventListener("DOMContentLoaded", () => fetchAndDisplayOrders("All Orders"));
+</script>
+
+
+
+    <script type="module" src="js/dashboard.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
+

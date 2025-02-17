@@ -1,0 +1,215 @@
+/* Checkout Window */
+
+.checkout {
+    margin: 50px 0;
+}
+
+.checkout .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout form {
+    width: 45%;
+}
+
+.checkout form h2 {
+    padding: 10px 20px;
+    background: var(--main-color);
+    text-transform: capitalize;
+}
+
+.checkout form .coupon,
+.checkout form .address {
+    background: #fff;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.checkout form .inputs {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+}
+
+.checkout form .inputs label {
+    color: var(--dark-color);
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.checkout form .inputs input {
+    margin: 5px 0 20px;
+    padding: 12px 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.checkout form .inputs textarea {
+    margin: 5px 0 20px;
+    padding: 12px 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    height: 100px;
+}
+
+.ordersummary .items {
+    max-height: 425px;
+    /* Set the maximum height you want */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    border: 1px solid #ccc;
+    /* Optional: Add a border for better visibility */
+    padding: 10px;
+    /* Optional: Add padding */
+    border: none;
+}
+
+.ordersummary .items {
+    max-height: 45 0px;
+}
+
+
+
+
+.checkout .ordersummary {
+    background: #fff;
+    width: 45%;
+    border-radius: 5px;
+    padding: 0 20px;
+
+}
+
+.ordersummary .items .items_cart {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 20px;
+    gap: 15px;
+}
+
+.ordersummary .items .items_cart img {
+    width: 150px;
+}
+
+.ordersummary .items .items_cart p {
+    color: var(--dark-color);
+    font-size: 18px;
+}
+
+.ordersummary .items .total {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.checkout .ordersummary .button_div {
+    border-top: 1px solid var(--border-color);
+    padding: 10px 0;
+}
+
+.checkout .ordersummary .button_div button {
+    background: var(--main-color);
+    width: 100%;
+    padding: 15px 0;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.checkout .ordersummary h1 {
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0;
+}
+
+.checkout .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    /* Ensures both sections have the same height */
+    gap: 20px;
+    /* Optional: Adds space between the two sections */
+}
+
+.checkout form,
+.checkout .ordersummary {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.checkout .ordersummary {
+    padding: 0 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.checkout form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    display: grid
+;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+}
+
+.ordersummary .items {
+    flex-grow: 1;
+    /* Allows the content inside to take up available height */
+}
+
+.ordersummary .button_div {
+    margin-top: auto;
+    /* Pushes the button to the bottom of the section */
+}
+
+.total {
+    font-size: 25px;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+}
+
+#total_price_checkout,
+.item_price {
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.quantity_item {
+    font-weight: bold;
+}
+
+/* Checkout Window End*/
+
+.username-checkout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+
+}
+
+.username-checkout .checkout-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-form-group{
+    display: flex;
+    flex-direction: column;
+}
+

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTech</title>
+    <link rel="icon" type="image/png" href="img/store icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <!--Font Awesom-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+<body>
+     
+    <div id="splash-screen">
+        <img src="img/logov2.png" alt="Splash Image">
+    </div>
+    
+    
+    <header>
+        <div class="container top-nav">
+            <a href="#" class="logo"><img src="img/logov2.png" alt=""></a>
+            <form action="" class="search">
+                <input type="search" placeholder="Search for product">
+                <button type="submit">Search</button>
+            </form>
+
+            <div class="test">
+                <div class="cart_header">
+                    <div onclick="open_cart()" class="icon_cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="count_item">0</span>
+                    </div>
+                </div>
+    
+                <div class="total_price">
+                    <p>My Cart:</p>
+                    <p class="price_cart_head">$0</p>
+                </div>
+            </div>
+         
+
+            </div>
+
+        </div>
+
+        <nav>
+            <div class="links container">
+                <i onclick ="open_menu()" class="fa-solid fa-bars btn_open_menu"></i>
+                <ul id="menu">
+                    <span onclick ="close_menu()" class="bg_overlay"></span>
+                    <i onclick ="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
+                    <img class="logo_menu" src="img/logo-black.png" alt="">
+                    <li ><a href="index.html">home</a></li>
+                    <li class="active"><a href="all_product.html">all product</a></li>
+                    <li><a href="">about us</a></li>
+                    <li><a href="">contact</a></li>
+                </ul>
+
+                <div class="loging_signup">
+                    <a href="login.html">login <i class="fa-solid fa-right-to-bracket"></i></a>
+                    <a href="#">sign up <i class="fa-solid fa-user-plus"></i></a>
+                </div>
+            </div>
+        </nav>
+
+      
+    </header>
+
+    <div class="cart">
+        <div class="top_cart">
+            <h3>My Cart <span class="top_items_count">(0 Item in Cart)</span></h3>
+            <span onclick="close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
+        </div>
+        
+        <div class="items_in_cart">
+         
+        </div> 
+
+        <div class="bottom_cart">
+            <div class="total">
+                <p>Cart Subtotal</p>
+                <p class="price_cart_total">$0</p>
+            </div>
+            <div class="button_cart">
+                <a href="checkout.html" class="btn_cart">Proceed to checkout</a>
+                <button class="btn_cart trans-bg">Shop More</button>
+            </div>
+        </div>
+    </div> 
+    
+
+      <div class="top_page">
+        <div class="container">
+            <h1>Experience the future of Technology with Our Topico.</h1>
+            <p>Find everything you need to transform you home into a smart, connected space.
+                our Topico store offers a wide range of devices of fit you't needs
+            </p>
+        </div>
+    </div>
+
+
+    <section class="all_products">
+        <div class="container">
+
+            <span onclick="open_close_filter()" class="btn_filter">
+                Filter <i class="fa-solid fa-filter"></i>
+            </span>
+
+            <div class="filter">
+                <h2>Filter</h2>
+
+                <div class="filter_item">
+                    <h4>categorie</h4>
+                    <div class="content">
+
+                        <div class="item">
+                            <span>Labtop</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>CPU</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>graphics card (GPU)</span>
+                            <input type="checkbox">
+                        </div> 
+
+                        <div class="item">
+                            <span>RAM</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>SSD</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Cooling</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Power Supply</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>PC Cases</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>HDD</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Storage</span>
+                            <input type="checkbox">
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="filter_item">
+                    <h4>Brand</h4>
+                    <div class="content">
+
+                        <div class="item">
+                            <span>MSI</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Asus</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Razer</span>
+                            <input type="checkbox">
+                        </div> 
+
+                        <div class="item">
+                            <span>Cooler Master</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Gigabyte</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Aorus</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Corsair</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>XPG</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Samsung</span>
+                            <input type="checkbox">
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="products_dev" class="products_dev">
+
+            </div>
+        </div>
+
+        <div class="pagination">
+            <span class="btn_page prev"><i class="fa-solid fa-backward-step"></i></span>
+            <a href=""><span class="num_page active">1</span></a>
+            <a href=""><span class="num_page">2</span></a>
+            <a href=""><span class="num_page">3</span></a>
+            <span class="btn_page next"><i class="fa-solid fa-forward-step"></i></span>
+
+        </div>
+
+    </section>
+
+<div class="back_to_top">
+    <p>Back to Top</p>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="big_row">
+            <img src="img/logo-white.png" alt="">
+        <div class="hotline">
+            <i class="fa-solid fa-headset"></i>
+            <div class="text">
+                <h5>Hotline free 24/24:</h5>
+                <h6>(+100) 123 123 123</h6>
+            </div>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur 
+            adipisicing elit. Voluptas dolores officiis natus omnis mollitia aut. Accusantium fugit ducimus pariatur quisquam ratione quae ad dolorem 
+            odio ullam architecto sed, omnis praesentium.</p>
+        </div>
+
+        <div class="row">
+            <h4>FAQs & Help</h4>
+            <div class="links">
+                <a href="#">F.A.Q.'s</a>
+                <a href="#">Ordering Tracking</a>
+                <a href="#">Contacts</a>
+                <a href="#">Events</a>
+                <a href="#">Help Center</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>Shipping & Delivery</h4>
+            <div class="links">
+                <a href="#">Delivery Information</a>
+                <a href="#">Discount</a>
+                <a href="#">Payment & Shipping</a>
+                <a href="#">Estimated Delivery Time</a>
+                <a href="#">Shipping Guid</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>Information</h4>
+            <div class="links">
+                <a href="#">Populer</a>
+                <a href="#">Our Services</a>
+                <a href="#">Your Account</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms & Condition</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom_footer">
+        <div class="container">
+            <p>Copyright &copy;<span>Topico.</span> all Rights Reserved</p>
+            <div class="payment_img">
+                <img src="img/payment-1.png" alt="">
+                <img src="img/payment-2.png" alt="">
+                <img src="img/payment-3.png" alt="">
+                <img src="img/payment-4.png" alt="">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script src="js/main.js"></script>
+    <script type="module" src="js/all_products.js"></script>
+
+    <script>
+        window.onload = function(){
+            const storedCart = localStorage.getItem('cartItems');
+            if(storedCart) {
+                product_cart = JSON.parse(storedCart);
+                getCartItems();
+            }
+        };
+    </script>
+
+    <script>
+        // Add this script at the end of your HTML or in a separate JS file
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        const splashScreen = document.getElementById('splash-screen');
+        if (splashScreen) {
+            splashScreen.style.display = 'none';
+        }
+    }, 500); // 1000 milliseconds = 1 second
+});
+
+    </script>
+
+
+</body>
+</html>

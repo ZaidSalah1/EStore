@@ -1,0 +1,141 @@
+
+[
+    {
+      "id": 0,
+      "img": "https://watanimall.com/wp-content/uploads/2023/03/CL-LC-II-360-B.png",
+      "img_hover": "https://watanimall.com/wp-content/uploads/2023/03/CL-LC-II-360-B-2.png",
+      "images": [
+        "https://watanimall.com/wp-content/uploads/2023/03/CL-LC-II-360-B.png",
+        "https://watanimall.com/wp-content/uploads/2023/03/CL-LC-II-360-B-3.png",
+        "https://watanimall.com/wp-content/uploads/2023/03/CL-LC-II-360-B-2.png",
+        "https://watanimall.com/wp-content/uploads/2023/03/CL-LC-II-360-B-1-600x600.png"
+    ],
+      "name": "COOLER LIQUID-CPU ASUS ROG STRIX LC II 360 AM5 ARGB BLACK",
+      "price": 888,
+      "old_price": 999.00,
+      "availability" : "In Stock"
+    },
+    {
+      "id": 1,
+      "img": "https://watanimall.com/wp-content/uploads/2020/11/AOC-Q27G2U.png",
+      "img_hover": "https://watanimall.com/wp-content/uploads/2020/10/Q27G2UBK-6-1.png",
+      "name": "MONITOR AOC Q27G2U/BK 27″ VA 2K 144HZ",
+      "images": [
+        "https://watanimall.com/wp-content/uploads/2020/11/AOC-Q27G2U.png",
+        "https://watanimall.com/wp-content/uploads/2020/10/Q27G2UBK-6-1.png",
+        "https://watanimall.com/wp-content/uploads/2020/10/Q27G2UBK-3-1.png",
+        "https://watanimall.com/wp-content/uploads/2020/10/Q27G2UBK-2-1.png"
+      ],
+      "price": 1350.00,
+      "old_price": 1170.00,
+      "availability" : "In Stock",
+      "description" : " MT-AOC-Q27G2U"
+    },
+    {
+      "id": 2,
+      "img": "https://watanimall.com/wp-content/uploads/2023/04/MT-AS-VG27WQ.png",
+      "img_hover": "https://watanimall.com/wp-content/uploads/2023/04/MT-AS-VG27WQ-3.png",
+      "name": "MONITOR ASUS TUF VG27WQ 27″ WQHD CURVED VA 165HZ",
+      "price": 1650,
+      "old_price": 1800,
+      "availability" : "Not Avilable"
+    },
+    {
+      "id": 3,
+      "img": "https://watanimall.com/wp-content/uploads/2023/05/GPU-AS-4060TI-O8G.png",
+      "img_hover": "https://watanimall.com/wp-content/uploads/2023/05/GPU-AS-4060TI-O8G-1-600x600.png",
+      "name": "GPU ASUS TUF RTX4060TI-O8G-GAMING",
+      "price": 2200.00,
+      "old_price": 2270.00
+    },
+    {
+      "id": 4,
+      "img": "https://watanimall.com/wp-content/uploads/2022/07/KB-ROG-XA05.png",
+      "img_hover": "https://watanimall.com/wp-content/uploads/2022/06/KB-ROG-XA05-2-600x600.png",
+      "name": "KEYBOARD ASUS XA05 ROG STRIX SCOPE RX RGB RED",
+      "price": 380,
+      "old_price": 420.00
+
+    },
+    {
+      "id": 5,
+      "img": "img/product/product6.jpg",
+      "img_hover": "img/product/product-6.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 115,
+      "old_price": 235
+    },
+    {
+      "id": 6,
+      "img": "img/product/product7.jpg",
+      "img_hover": "img/product/product-7.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 225,
+      "old_price": 280
+    },
+    {
+      "id": 7,
+      "img": "img/product/product8.jpg",
+      "img_hover": "img/product/product-8.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 150,
+      "old_price": 200
+    },
+    {
+      "id": 8,
+      "img": "img/product/product-1.jpg",
+      "img_hover": "img/product/product1.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 180
+    },
+    {
+      "id": 9,
+      "img": "img/product/product-2.jpg",
+      "img_hover": "img/product/product2.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 300
+    },
+    {
+      "id": 10,
+      "img": "img/product/product-3.jpg",
+      "img_hover": "img/product/product3.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 250
+    },
+    {
+      "id": 11,
+      "img": "img/product/product-4.jpg",
+      "img_hover": "img/product/product4.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 120
+    },
+    {
+      "id": 12,
+      "img": "img/product/product-5.jpg",
+      "img_hover": "img/product/product5.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 90
+    },
+    {
+      "id": 13,
+      "img": "img/product/product-6.jpg",
+      "img_hover": "img/product/product6.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 129
+    },
+    {
+      "id": 14,
+      "img": "img/product/product-7.jpg",
+      "img_hover": "img/product/product7.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 180
+    },
+    {
+      "id": 15,
+      "img": "img/product/product-8.jpg",
+      "img_hover": "img/product/product8.jpg",
+      "name": "Original Mobile Android Dual SIM Smart Phone G3",
+      "price": 60
+    }
+
+  ]

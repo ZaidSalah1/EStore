@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+
+            <div class="searchContainer">
+                <form action="" class="search">
+                    <input type="search" id="searchInput" placeholder="Search for product">
+                    <button type="submit">Search</button>
+                </form>
+                <div class="searchDropdown">
+
+                </div>
+            </div>
+
+            <a href="#" class="logo"><img src="img/logov2.png" alt=""></a>
+        </div>
+    </header>
+
+    <div class="menu">
+        <div class="container">
+            <div class="top_icon">
+                <h1><i class="fa-solid fa-cart-shopping"></i> Store</h1>
+            </div>
+
+            <div class="menu_item" id="dashboardMenu">
+                <h2><i class="fa-solid fa-chart-pie"></i> Dashboard</h2>
+            </div>
+
+            <div class="menu_item" id="productsMenu">
+                <h2><i class="fa-solid fa-box-archive"></i> Products</h2>
+
+            </div>
+
+            <div class="menu_item" id="orders">
+                <h2><i class="fa-solid fa-truck"></i> Orders <span class="msg" id="pendingCount">0</span></h2>
+            </div>
+
+            <div class="menu_item" id="customersMenu">
+                <h2><i class="fa-solid fa-users"></i> Customers</h2>
+            </div>
+
+            <div class="menu_item" id="adsMenu">
+                <h2><i class="fa-solid fa-image"></i> Ads Images</h2>
+            </div>
+
+
+            <div class="menu_item" id="messages">
+                <h2><i class="fa-solid fa-chart-pie"></i> Repoerts</h2>
+            </div>
+
+            <p>Help & Support</p>
+
+
+
+
+            <div class="menu_item" id="messages">
+                <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+            </div>
+
+
+
+            <div class="menu_item" id="messages">
+                <h2><i class="fa-solid fa-arrow-right-from-bracket"></i> logout</h2>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Fetch the pending orders count
+        fetch('/pendingOrdersCount')
+            .then(response => response.json())
+            .then(data => {
+                const pendingCount = data.pendingCount;
+                document.getElementById('pendingCount').textContent = pendingCount;
+            })
+            .catch(error => {
+                console.error('Error fetching orders count:', error);
+            });
+    </script>
+
+    <!-- Dashboard Section  -->
+    <div class="stats" id="stats">
+        <h1>DASHBOARD</h1>
+        <div class="row_stat">
+            <div class="products menu_item" id="productsCount">
+                <h1>Products <i class="fa-solid fa-cart-shopping"></i></h1>
+                <h1 class="count">??</h1>
+            </div>
+
+            <div class="view">
+                <h1>Total Orders <i class="fa-regular fa-eye"></i></h1>
+                <div><span id="pageViewsCount">Loading...</span></div>
+            </div>
+
+            <div class="products">
+                <h1>Sales <i class="fa-solid fa-chart-line"></i></h1>
+                <h1 class="count">50</h1>
+            </div>
+
+            <div class="products">
+                <h1>Revenue <i class="fa-solid fa-dollar-sign"></i></h1>
+                <h1 class="count">$1000</h1>
+            </div>
+        </div>
+
+
+
+        <div class="charts-dashboard">
+            <h2>Sales Overview</h2>
+            <div class="chart_row">
+                <!-- Sales Line Chart -->
+                <div class="chart-container">
+                    <canvas id="salesChart2"></canvas>
+                    <p>Monthly Sales Overview</p>
+                </div>
+
+                <!-- Order Pie Chart -->
+                <div class="chart-container">
+                    <canvas id="orderChart"></canvas>
+                    <p>Order Status Overview</p>
+                    <div id="statusCounts">
+
+                    </div> <!-- Added to display status counts -->
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th><i class="fa-solid fa-user"></i> Name</th>
+                    <th><i class="fa-solid fa-envelope"></i> Email</th>
+                    <th><i class="fa-solid fa-phone"></i> Phone </th>
+                    <th><i class="fa-solid fa-award"></i> status</th>
+                    <th>$ Total</th>
+                </tr>
+            </thead>
+            <tbody id="orderTableBody">
+                <!-- Rows will be inserted here dynamically -->
+                <h1>Latest</h1>
+                <tr class="table_row">
+                    <td>zaid</td>
+                    <td>zaid@gmaiol</td>
+                    <td>2133342</td>
+                    <td class="status-cell">Pending</td>
+                    <td>za45id</td>
+                </tr>
+                <tr class="table_row">
+                    <td>zaid</td>
+                    <td>zaid@gmaiol</td>
+                    <td>2133342</td>
+                    <td class="status-cell">completed</td>
+
+                    <td>za45id</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <script src="js/script.js"></script>
+
+    </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".status-cell").forEach(cell => {
+                let statusText = cell.textContent.trim().toLowerCase(); // Get text & normalize
+
+                // Remove old status classes
+                cell.classList.remove("status-pending", "status-in-progress", "status-completed", "status-canceled");
+
+                // Apply new class based on status
+                if (statusText.includes("pending")) {
+                    cell.classList.add("status-pending");
+                } else if (statusText.includes("in progress")) {
+                    cell.classList.add("status-in-progress");
+                } else if (statusText.includes("completed")) {
+                    cell.classList.add("status-completed");
+                } else if (statusText.includes("canceled")) {
+                    cell.classList.add("status-canceled");
+                }
+            });
+        });
+
+        function getPendingOrder() {
+
+        }
+
+    </script>
+
+
+    <!-- Products Section -->
+    <div class="products-section" id="products-section" style="display: none;">
+
+        <h1>Products</h1>
+
+        <div class="top_options">
+            <div class="add_product">
+                <div class="add">
+                    <div class="plus">+</div>
+                </div>
+            </div>
+
+            <div class="filter">
+
+            </div>
+
+        </div>
+
+        <div id="products_dev" class="products_dev">
+            <!-- Product items will be added here dynamically -->
+
+
+        </div>
+    </div>
+
+
+    <div class="orders-section" id="orders-section" style="display: none">
+
+        <div class="order-list">
+
+        </div>
+    </div>
+
+
+    <div class="customers-section" id="customers-section">
+        <div class="container">
+            <h2>Customers</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th><i class="fa-solid fa-user"></i> Name</th>
+                        <th><i class="fa-solid fa-envelope"></i> Email</th>
+                        <th><i class="fa-solid fa-phone"></i> Phone </th>
+                        <th><i class="fa-solid fa-award"></i> Rank</th>
+                        <th>$ Total</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTableBody">
+                    <!-- Rows will be inserted here dynamically -->
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for adding product -->
+
+
+    <div class="addProductWindow" id="addProductWindow" style="display: none;">
+        <h1>Add New Product</h1>
+
+        <form action="" id="add_Product_Form">
+
+            <div class="left">
+                <div class="general-info">
+                    <h2>General Information</h2>
+
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" name="productName" id="productName">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description Product</label>
+                        <textarea name="productDescription" id="productDescription"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="pricing">
+                    <h2>Pricing And Stock</h2>
+                    <div class="pricing_inputs">
+                        <div class="form-group">
+                            <label>Base Pricing</label>
+                            <input type="text" name="basePricing" id="basePricing">
+                        </div>
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input type="number" name="Stock" id="Stock">
+                        </div>
+                        <div class="form-group">
+                            <label>Discount</label>
+                            <input type="text" name="discount" id="discount">
+                        </div>
+                        <div class="form-group">
+                            <label>Discount Type</label>
+                            <input type="text" name="discountType" id="discountType">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="right">
+                <div class="product-images">
+                    <h2>Upload image</h2>
+                    <div class="selected-images">
+                        <div class="add-box" onclick="document.getElementById('fileInput').click()">
+                            <span><i class="fa-solid fa-camera"></i></span>
+                        </div>
+                        <img id="previewImageMain"
+                            style="display: none; width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
+                        <input type="file" id="fileInput" style="display: none;" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="product-type">
+                    <div class="form-group">
+                        <label>Product Type</label>
+                        <select name="productType" class="productType" id="productTypeSelect">
+                            <option value="">Select a Product Type</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="addBtn">Add Product</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="editProductWindow" id="editProductWindow" style="display: none;">
+        <h1>Edit Product</h1>
+
+        <form action="" id="edit_Product_Form">
+            <div class="left">
+                <div class="general-info">
+                    <h2>General Information</h2>
+
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" name="productName" id="editProductName">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description Product</label>
+                        <textarea name="productDescription" id="editProductDescription"></textarea>
+                    </div>
+                </div>
+
+                <div class="pricing">
+                    <h2>Pricing And Stock</h2>
+                    <div class="pricing_inputs">
+                        <div class="form-group">
+                            <label>Base Pricing</label>
+                            <input type="text" name="basePricing" id="editBasePricing">
+                        </div>
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input type="number" name="Stock" id="editStock">
+                        </div>
+                        <div class="form-group">
+                            <label>Discount</label>
+                            <input type="text" name="discount" id="editDiscount">
+                        </div>
+                        <div class="form-group">
+                            <label>Discount Type</label>
+                            <input type="text" name="discountType" id="editDiscountType">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="product-images">
+                    <h2>Upload Image</h2>
+                    <div class="selected-images-edit">
+                        <div class="image-container">
+                            <img src="" class="big-img" alt="Selected Image">
+                            <div class="small-img">
+                                <h1></h1>
+                                <div class="add-boxV2">
+                                    <span>+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-type">
+                    <div class="form-group">
+                        <label>Product Type</label>
+                        <select name="productType" class="productType" id="editProductTypeSelect">
+                            <option value="0">Select a Product Type</option>
+                            <!-- Dynamic options will go here -->
+                        </select>
+                    </div>
+
+                    <button type="submit" class="editBtn">Save Changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/productTypes')  // Call the backend API to get product types
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('productTypeSelect');
+                    data.forEach(productType => {
+                        const option = document.createElement('option');
+                        option.value = productType.id;  // Use the id of product type
+                        option.textContent = productType.name;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => console.error("Error fetching product types:", error));
+        });
+    </script>
+
+    <script>
+        // let selectedImagesArray = []; // Array to store File objects
+
+        // // Function to handle file selection
+        // function handleFileSelect(event) {
+        //     const file = event.target.files[0]; // Get the selected file
+        //     if (file) {
+        //         selectedImagesArray.push(file); // Store the File object
+        //         updateImagePreview(); // Update the preview
+        //     }
+        // }
+
+        // // Function to update the image preview
+        // function updateImagePreview() {
+        //     const selectedImages = document.querySelector('.selected-images');
+        //     if (selectedImagesArray.length > 0) {
+        //         const bigImageUrl = URL.createObjectURL(selectedImagesArray[0]); // Use the first image as the big preview
+        //         const smallImagesHtml = selectedImagesArray.slice(1).map((file, index) => `
+        //                             <img src="${URL.createObjectURL(file)}" alt="Preview ${index + 1}">
+        //                         `).join('');
+
+        //         selectedImages.innerHTML = `
+        //                             <div class="image-container">
+        //                                 <img src="${bigImageUrl}" class="big-img" alt="Selected Image">
+        //                                 <div class="small-img">
+        //                                     ${smallImagesHtml}
+        //                                     <div class="add-boxV2" onclick="document.getElementById('additionalFileInput').click()">
+        //                                         <span>+</span>
+        //                                     </div>
+        //                                 </div>
+        //                             </div>
+        //                         `;
+        //     }
+        // }
+
+        // // Function to trigger additional file input
+        // function addAdditionalImage() {
+        //     document.getElementById('additionalFileInput').click();
+        // }
+
+        // // Create additional file input dynamically
+        // const additionalFileInput = document.createElement('input');
+        // additionalFileInput.type = 'file';
+        // additionalFileInput.id = 'additionalFileInput';
+        // additionalFileInput.style.display = 'none';
+        // additionalFileInput.accept = 'image/*';
+        // additionalFileInput.addEventListener('change', handleFileSelect);
+        // document.body.appendChild(additionalFileInput);
+
+        // // Attach event listener to the main file input
+        // document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+        // // Handle form submission
+        // document.getElementById('add_Product_Form').addEventListener('submit', async function (event) {
+        //     event.preventDefault();
+
+        //     // Prepare form data
+        //     const formData = {
+        //         name: document.getElementById("productName").value,
+        //         price: parseFloat(document.getElementById("basePricing").value),
+        //         description: document.getElementById("productDescription").value,
+        //         quantity: parseInt(document.getElementById("Stock").value),
+        //         discount: parseFloat(document.getElementById("discount").value) || 0,
+        //         type_id: parseInt(document.getElementById("productTypeSelect").value),
+        //         images: [] // Will be populated with image URLs
+        //     };
+
+        //     // Upload images and get their URLs
+        //     if (selectedImagesArray.length > 0) {
+        //         try {
+        //             const uploadedURLs = await uploadFiles(selectedImagesArray);
+        //             formData.images.push(...uploadedURLs);
+        //             await sendFormData(formData); // Send the form data to the server
+        //             alert("Product added successfully!");
+
+        //             closeModal(); // Close the modal
+        //         } catch (error) {
+        //             console.error("Error:", error);
+        //             alert("Error adding product. Please try again.");
+        //         }
+        //     } else {
+        //         console.log("No images selected.");
+        //         alert("Please select at least one image.");
+        //     }
+        // });
+
+        // // Function to upload files and return their URLs
+        // async function uploadFiles(files) {
+        //     const uploadedURLs = [];
+        //     for (const file of files) {
+        //         const formData = new FormData();
+        //         formData.append("file", file);
+
+        //         const response = await fetch("/upload-image", {
+        //             method: "POST",
+        //             body: formData
+        //         });
+
+        //         const data = await response.json();
+        //         if (data.url) {
+        //             uploadedURLs.push(data.url);
+        //         }
+        //     }
+        //     return uploadedURLs;
+        // }
+
+        // // Function to send form data to the server
+        // async function sendFormData(formData) {
+        //     const response = await fetch("/add-product2", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify(formData)
+        //     });
+
+        //     const data = await response.json();
+        //     console.log("Success:", data);
+        // }
+
+        // // Function to close the modal
+        // function closeModal() {
+        //     const modal = document.getElementById("addProductWindow"); // Replace "addProductWindow" with your modal's ID
+        //     if (modal) {
+        //         modal.style.display = "none";
+        //     }
+        // }
+    </script>
+
+
+    <script>
+        // Fetch data from the /customers endpoint
+        async function fetchCustomers() {
+            try {
+                const response = await fetch("/customers");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch customer data");
+                }
+                const data = await response.json();
+                populateTable(data);
+            } catch (error) {
+                console.error("Error fetching customer data:", error);
+            }
+        }
+
+        // Populate the table with customer data
+        function populateTable(customers) {
+            const tableBody = document.getElementById("customerTableBody");
+            tableBody.innerHTML = ""; // Clear existing rows
+
+            customers.forEach(customer => {
+                const row = document.createElement("tr");
+                row.classList.add("table_row");
+
+                row.innerHTML = `
+                    <td>${customer.Name}</td>
+                    <td>${customer.Email}</td>
+                    <td>${customer.Phone}</td>
+                    <td>${customer.Customer_Tier}</td>
+                    <td>${customer.Total_Purchase_Amount}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Fetch and populate data when the page loads
+        document.addEventListener("DOMContentLoaded", fetchCustomers);
+
+        function getLatestOrders() {
+            const orderTableBody = document.getElementById('orderTableBody');
+
+            fetch("/getLatestOrders")
+                .then(response => response.json())
+                .then(orders => {
+                    orderTableBody.innerHTML = ""; // Clear previous content
+
+                    orders.forEach(order => {
+                        // Convert status to lowercase and replace spaces with hyphens for class name
+                        const statusClass = `status-${order.status.toLowerCase().replace(/\s+/g, '-')}-tr`;
+
+                        orderTableBody.innerHTML += `
+                    <tr class="table_row">
+                        <td>${order.user_name}</td>
+                        <td>${order.user_email}</td>
+                        <td>${order.user_phone}</td>
+                        <td class="status-cell ${statusClass}">${order.status}</td>
+                        <td>za45id</td>
+                    </tr>
+                `;
+                    });
+                })
+                .catch(error => console.error("Error fetching orders:", error));
+        }
+        document.addEventListener("DOMContentLoaded", getLatestOrders);
+
+    </script>
+
+    <script>
+        // Cache DOM elements
+        const menuItems = document.querySelectorAll('.menu_item');
+        const dashboardContent = document.getElementById('stats');
+        const productsContent = document.getElementById('products-section');
+        const ordersContent = document.getElementById('orders-section');
+        const customersContent = document.getElementById('customers-section');
+        const addProductBtn = document.querySelector('.add_product');
+        const searchInputItem = document.getElementById('searchInput');
+        const addProductWindow = document.getElementById('addProductWindow');
+        const editProductWindow = document.getElementById('editProductWindow');
+
+        // Function to handle menu item click
+        function handleMenuClick(e) {
+            // Remove active class from all menu items and add to clicked one
+            menuItems.forEach(item => item.classList.remove('active'));
+            e.target.closest('.menu_item').classList.add('active');
+
+            // Hide all content sections by default
+            dashboardContent.style.display = 'none';
+            productsContent.style.display = 'none';
+            ordersContent.style.display = 'none';
+            customersContent.style.display = 'none';
+            addProductWindow.style.display = 'none';
+            editProductWindow.style.display = 'none';
+
+            // Show content based on selected menu item
+            if (e.target.closest('#dashboardMenu')) {
+                dashboardContent.style.display = 'block';
+                searchInputItem.placeholder = "Search for Products";
+            } else if (e.target.closest('#productsMenu')) {
+                productsContent.style.display = 'block';
+                searchInputItem.placeholder = "Search for Products";
+            } else if (e.target.closest('#orders')) {
+                ordersContent.style.display = 'block';
+                searchInputItem.placeholder = "Search for Orders";
+            } else if (e.target.closest('#customersMenu')) {
+                customersContent.style.display = 'block';
+                searchInputItem.placeholder = "Search for Orders";
+            }
+        }
+
+        // Add event listeners to all menu items
+        menuItems.forEach(item => item.addEventListener('click', handleMenuClick));
+
+        // Set the default selected menu item and content on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const defaultMenuItem = document.querySelector('#dashboardMenu');
+            if (defaultMenuItem) {
+                defaultMenuItem.click(); // Simulate a click on the default menu item
+            }
+        });
+
+        // Show add product window when the button is clicked
+        addProductBtn.addEventListener('click', function () {
+            productsContent.style.display = 'none';
+            addProductWindow.style.display = 'block';
+        });
+    </script>
+
+
+    <!-- <script>
+        // Get the modal element
+        const modal = document.getElementById('addProductModal');
+
+        // Get the button that opens the modal
+        const addProductBtn = document.querySelector('.add_product');
+
+        // Get the <span> element that closes the modal
+        const closeBtn = document.querySelector('.close');
+
+        // When the user clicks on the "Add Product" button, open the modal
+        addProductBtn.addEventListener('click', function () {
+            modal.style.display = 'flex'; // Show the modal
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.addEventListener('click', function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+
+
+    </script> -->
+
+
+
+    <!-- <script>
+        function toggleDropdown() {
+            const dropdownList = document.getElementById("dropdownList");
+            dropdownList.style.display = dropdownList.style.display === "block" ? "none" : "block";
+        }
+
+        // Close dropdown if clicked outside
+        document.addEventListener("click", function (event) {
+            const dropdownList = document.getElementById("dropdownList");
+            if (!event.target.closest('.dropdown')) {
+                dropdownList.style.display = "none";
+            }
+        });
+
+        // Function to select a product type
+        function selectType(type) {
+            document.getElementById("productType").value = type;
+            document.getElementById("dropdownList").style.display = "none"; // Hide dropdown after selection
+        }
+
+    </script> -->
+
+    <script type="module" src="js/dashbaordv2.js"></script>
+
+
+
+
+
+</html>

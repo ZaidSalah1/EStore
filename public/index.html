@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTech</title>
+    <link rel="icon" type="image/png" href="img/store icon.png">
+
+    <!--File Css-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--Font Awesom-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <img class="WhatsApp_icon" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="">
+
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+    <div id="splash-screen">
+        <img src="img/logov2.png" alt="Splash Image">
+    </div>
+
+    <!-- <div id="header"></div>
+    <script>
+        // Load the header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                // Initialize header-related JavaScript
+                initializeHeader();
+                // Initialize favorites after the header is loaded
+                initializeFavorites();
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+            });
+    </script> -->
+
+    <header>
+        <div class="container top-nav">
+            <a href="#" class="logo"><img src="img/logov2.png" alt=""></a>
+            <div class="searchContainer">
+                <form id="searchForm" action="search_results.html" class="search">
+                    <input type="search" id="searchInput" placeholder="Search for product">
+                    <button type="submit">Search</button>
+                </form>
+                <div class="searchDropdown"></div>
+            </div>
+            <div class="test">
+                <div class="cart_header">
+                    <div class="icon_language">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="language">ENG</span>
+                    </div>
+                </div>
+                <div class="cart_header">
+                    <div class="icon_fav" onclick="openFavPage()">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="count_fav">0</span>
+                    </div>
+                </div>
+                <div class="cart_header">
+                    <div onclick="open_cart()" class="icon_cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="count_item">0</span>
+                    </div>
+                </div>
+                <div class="total_price">
+                    <p>My Cart:</p>
+                    <p class="price_cart_head">$0</p>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="links container">
+                <i onclick="open_menu()" class="fa-solid fa-bars btn_open_menu"></i>
+                <ul id="menu">
+                    <span onclick="close_menu()" class="bg_overlay"></span>
+                    <i onclick="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
+                    <img class="logo_menu" src="img/logo-black.png" alt="">
+                    <li class="active"><a href="index.html">home</a></li>
+                    <li><a href="all_product.html">all product</a></li>
+                    <li><a href="">about us</a></li>
+                    <li><a href="">contact</a></li>
+                </ul>
+                <div class="loging_signup">
+                    <a href="login.html">login <i class="fa-solid fa-right-to-bracket"></i></a>
+                    <a href="#">sign up <i class="fa-solid fa-user-plus"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <script>
+        let lastScrollTop = 0;
+        const nav = document.querySelector("header nav");
+
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Scrolling down - hide navbar and disable pointer events
+                nav.style.opacity = "0";
+                nav.style.transform = "translateY(-100%)";  // Fully move the nav out of view
+                nav.style.pointerEvents = "none";  // Disable click events
+            } else {
+                // Scrolling up - show navbar and enable pointer events
+                nav.style.opacity = "1";
+                nav.style.transform = "translateY(0)";  // Bring the nav back to its original position
+                nav.style.pointerEvents = "auto";  // Enable click events
+            }
+
+            lastScrollTop = scrollTop;
+        });
+    </script>
+
+    <style>
+        header nav {
+            position: fixed;
+            /* Keeps it at the top */
+            width: 100%;
+            left: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease, pointer-events 0s linear 0.3s;
+            /* Smooth opacity and transform transitions */
+            z-index: 999;
+            /* Ensure the nav stays above other elements */
+            background-color: #fff;
+        }
+    </style>
+
+    <style>
+        header nav {
+            position: fixed;
+            /* Keeps it at the top */
+            width: 100%;
+            /* top: 0; */
+            left: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            /* Smooth opacity and transform transitions */
+            z-index: 999;
+            /* Ensure the nav stays above other elements */
+            background-color: #fff;
+        }
+    </style>
+
+
+    <div class="cart">
+        <div class="top_cart">
+            <h3>My Cart <span class="top_items_count">(0 Item in Cart)</span></h3>
+            <span onclick="close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
+        </div>
+
+        <div class="items_in_cart">
+
+        </div>
+
+        <div class="bottom_cart">
+            <div class="total">
+                <p>Cart Subtotal</p>
+                <p class="price_cart_total">$0</p>
+            </div>
+            <div class="button_cart">
+                <a href="checkout.html" class="btn_cart">Proceed to checkout</a>
+                <button class="btn_cart trans-bg">Shop More</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <section class="slider">
+        <div class="container">
+            <div class="side_bar">
+                <h2><i class="fa-solid fa-bars"></i>Shop By</h2>
+                <a href="#">All Categories</a>
+                <a href="#">Best Seller Product</a>
+                <a href="#">New Arrivals</a>
+                <a href="#">top 10 Offers</a>
+                <a href="#">Phones & Tablet</a>
+                <a href="#">Electronics & Digits</a>
+                <a href="#">Fashion & Clothings</a>
+                <a href="#">Jewelry & Watches</a>
+                <a href="#">TV & Audio</a>
+            </div>
+            <!-- Swiper -->
+            <div class="slide-swp mySwiper">
+                <div class="swiper-wrapper">
+
+
+                    <div class="swiper-slide">
+                        <a href="#"><img src="img/slider-01.jpg" alt=""></a>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <a href="#"><img src="img/banner08.png" alt=""></a>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                        <a href="#"><img src="img/slider-02.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="features">
+        <div class="container">
+
+            <div class="feature_item">
+                <img src="img/features1.png" alt="">
+                <div class="text">
+                    <h4>Free Shipping</h4>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+
+            <div class="feature_item">
+                <img src="img/features2.png" alt="">
+                <div class="text">
+                    <h4>Money Guarantee</h4>
+                    <p>30 Day Money Back Guarantee</p>
+                </div>
+            </div>
+
+            <div class="feature_item">
+                <img src="img/features3.png" alt="">
+                <div class="text">
+                    <h4>Online Support 24/7</h4>
+                    <p>Technical Support Stand By</p>
+                </div>
+            </div>
+
+            <div class="feature_item">
+                <img src="img/features4.png" alt="">
+                <div class="text">
+                    <h4>Secure Payment</h4>
+                    <p>All Payment Method Are Accepted</p>
+                </div>
+            </div>
+
+            <div class="feature_item">
+                <img src="img/features5.png" alt="">
+                <div class="text">
+                    <h4>Member Discount</h4>
+                    <p>Upto 40% Discount All Product</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <div class="selections">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <div class="container swiper-wrapper"> <!-- Added swiper-wrapper class -->
+            <div class="type swiper-slide" onclick="navigateToProductType('Case')"> <!-- Added swiper-slide class -->
+                <img src="img/case.png" alt="">
+                <h1>Computer Cases</h1>
+                <p>Product Counts 92</p>
+            </div>
+
+            <div class="type swiper-slide" onclick="navigateToProductType('Laptop')"> <!-- Added swiper-slide class -->
+                <img src="img/labptops.png" alt="">
+                <h1>Laptops</h1>
+                <p>Product Counts 27</p>
+            </div>
+
+            <div class="type swiper-slide" onclick="navigateToProductType('Graphics Card')">
+                <!-- Added swiper-slide class -->
+                <!-- <a href="product_type.html?type=GPU"></a> -->
+                <img src="img/gpus2.png" alt="">
+                <h1>Graphics Card</h1>
+                <p>Product Counts 46</p>
+            </div>
+
+            <div class="type swiper-slide" onclick="navigateToProductType('Coller')"> <!-- Added swiper-slide class -->
+                <img src="img/coolers.png" alt="">
+                <h1>Collers</h1>
+                <p>Product Counts 46</p>
+            </div>
+
+            <div class="type swiper-slide" onclick="navigateToProductType('CPU')"> <!-- Added swiper-slide class -->
+                <img src="img/cpus.png" alt="">
+                <h1>CPU's / Processors</h1>
+                <p>Product Counts 58</p>
+            </div>
+            <div class="type swiper-slide" onclick="navigateToProductType('RAM')"> <!-- Added swiper-slide class -->
+                <img src="img/ram.png" alt="">
+                <h1>Random Access Memory (RAM)</h1>
+                <p>Product Counts 78</p>
+            </div>
+
+            <div class="type swiper-slide" onclick="navigateToProductType('Motherboard')">
+                <!-- Added swiper-slide class -->
+                <img src="img/motherboards.png" alt="">
+                <h1>Motherboards</h1>
+                <p>Product Counts 28</p>
+            </div>
+
+            <div class="type swiper-slide" onclick="navigateToProductType('Storage')"> <!-- Added swiper-slide class -->
+                <img src="img/storages.png" alt="">
+                <h1>Storage</h1>
+                <p>Product Counts 36</p>
+            </div>
+            
+            <div class="type swiper-slide" onclick="navigateToProductType('Monitor')"> <!-- Added swiper-slide class -->
+                <img src="img/monitors.png" alt="">
+                <h1>Monitors</h1>
+                <p>Product Counts 46</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- <section class="banner">
+        <div class="container">
+
+            <div class="banner_img">
+                <div class="glass_hover"> </div>
+                <a href="#"></a>
+                    <img src="img/banner/zbanner1.png" alt="">
+            </div>
+
+            <div class="banner_img">
+                <div class="glass_hover"> </div>
+                <a href="#"></a>
+                    <img src="img/banner/banner_home1.png" alt="">
+            </div>
+
+            <div class="banner_img">
+                <div class="glass_hover"> </div>
+                <a href="#"></a>
+                    <img src="img/banner/banner-33.png" alt="">               
+            </div>
+        </div>
+    </section> -->
+
+
+    <section class="slide slide_sale">
+        <div class="container">
+            <div class="sale_sec mySwiper">
+                <div class="top_slide">
+                    <h2>New Arrivals <span>Product</span></h2>
+                </div>
+
+                <div id="swiper_items_sale" class="products swiper-wrapper">
+
+
+                </div>
+
+                <div class="swiper-button-next btn_swip"></div>
+
+                <div class="swiper-button-prev btn_swip"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="banner banner_big">
+        <div class="container">
+
+            <div class="banner_img">
+                <div class="glass_hover"> </div>
+                <a href="#"></a>
+                <img src="img/banner/banner-12.png" alt="">
+            </div>
+
+            <div class="banner_img">
+                <div class="glass_hover"> </div>
+                <a href="#"></a>
+                <img src="img/banner/banner-13.png" alt="">
+            </div>
+
+        </div>
+    </section>
+
+    <section class="slide slide_product">
+        <div class="container">
+
+            <div class="top_slide">
+                <h2>Discounted <span>Products</span></h2>
+            </div>
+
+            <div class="slide_with_img">
+                <div class="categ_img">
+                    <a href="#"><img src="img/banner/zbanner2.png" alt=""></a>
+                </div>
+                <div class="product_swip mySwiper">
+                    <div class="products other_product_swiper swiper-wrapper" id="other_product_swiper">
+
+                    </div>
+
+                    <div class="swiper-button-next btn_swip"></div>
+
+                    <div class="swiper-button-prev btn_swip"></div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class="slide slide_product">
+        <div class="container">
+
+            <div class="top_slide">
+                <h2>Special <span>Products</span></h2>
+            </div>
+
+            <div class="slide_with_img">
+
+                <div class="product_swip mySwiper">
+                    <div class="products other_product_swiper swiper-wrapper" id="other_product_swiper2">
+                    </div>
+
+                    <div class="swiper-button-next btn_swip"></div>
+
+                    <div class="swiper-button-prev btn_swip"></div>
+
+                </div>
+                <div class="categ_img">
+                    <a href="#"><img src="img/banner/blue_banner.png" alt=""></a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="newsletter">
+        <div class="container">
+            <div class="text">
+                <img src="img/icon_email.png" alt="">
+                <div class="content">
+                    <h4>Sign up to newsletter</h4>
+                    <p>Get email updates about our letest shop...and recive</p>
+                    <h6>$30 Coupon for First Shopping</h6>
+                </div>
+            </div>
+
+            <form action="" class="newsletter_form">
+                <input type="email" placeholder="Enter You'r email here..">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="back_to_top">
+        <p>Back to Top</p>
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="big_row">
+                <img src="img/logo-white.png" alt="">
+                <div class="hotline">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="text">
+                        <h5>Hotline free 24/24:</h5>
+                        <h6>(+100) 123 123 123</h6>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Voluptas dolores officiis natus omnis mollitia aut. Accusantium fugit ducimus
+                    pariatur quisquam ratione quae ad dolorem
+                    odio ullam architecto sed, omnis praesentium.</p>
+            </div>
+
+            <div class="row">
+                <h4>FAQs & Help</h4>
+                <div class="links">
+                    <a href="#">F.A.Q.'s</a>
+                    <a href="#">Ordering Tracking</a>
+                    <a href="#">Contacts</a>
+                    <a href="#">Events</a>
+                    <a href="#">Help Center</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4>Shipping & Delivery</h4>
+                <div class="links">
+                    <a href="#">Delivery Information</a>
+                    <a href="#">Discount</a>
+                    <a href="#">Payment & Shipping</a>
+                    <a href="#">Estimated Delivery Time</a>
+                    <a href="#">Shipping Guid</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4>Information</h4>
+                <div class="links">
+                    <a href="#">Populer</a>
+                    <a href="#">Our Services</a>
+                    <a href="#">Your Account</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms & Condition</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom_footer">
+            <div class="container">
+                <p>Copyright &copy;<span>Topico.</span> all Rights Reserved</p>
+                <div class="payment_img">
+                    <img src="img/payment-1.png" alt="">
+                    <img src="img/payment-2.png" alt="">
+                    <img src="img/payment-3.png" alt="">
+                    <img src="img/payment-4.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+
+
+
+<script>
+    function navigateToProductType(type) {
+        window.location.href = `product_type.html?type=${encodeURIComponent(type)}`;
+    }
+</script>
+
+<script>
+    var swiper = new Swiper(".selections", {
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        slidesPerView: 3, // Adjust as needed
+        spaceBetween: 30, // Space between slides
+        breakpoints:{
+      1600: {
+        slidesPerView:3,
+      }, 1200: {
+        slidesPerView:2,
+        spaceBetween: 20
+      },
+      1000: {
+        slidesPerView:2,
+        spaceBetween: 15
+      }, 300: {
+        slidesPerView:1,
+        spaceBetween: 10
+      }, 100: {
+        slidesPerView:1,
+        spaceBetween: 10
+      },
+    }                         // Enables continuous looping of slides.
+  
+    });
+</script>
+
+
+<script>
+    // Add this script at the end of your HTML or in a separate JS file
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            const splashScreen = document.getElementById('splash-screen');
+            if (splashScreen) {
+                splashScreen.style.display = 'none';
+            }
+        }, 500); // 1000 milliseconds = 1 second
+    });
+
+</script>
+
+
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/swiper.js"></script>
+<!-- <script src="js/items_home.js" type="module"></script> -->
+<!-- <script src="js/main.js"></script> -->
+
+
+
+<script src="js/index.js" defer></script>
+<script src="js/cookie.js" defer></script>
+</html>

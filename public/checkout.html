@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topoco</title>
+    <!--File Css-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--Font Awesom-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+
+<body>
+
+    <div id="splash-screen">
+        <img src="img/logov2.png" alt="Splash Image">
+    </div>
+
+
+    <header>
+        <div class="container top-nav">
+            <a href="#" class="logo"><img src="img/logov2.png" alt=""></a>
+            <div class="searchContainer">
+                <form id="searchForm" action="search_results.html" class="search">
+                    <input type="search" id="searchInput" placeholder="Search for product">
+                    <button type="submit">Search</button>
+                </form>
+                <div class="searchDropdown"></div>
+            </div>
+            <div class="test">
+                <div class="cart_header">
+                    <div class="icon_language">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="language">ENG</span>
+                    </div>
+                </div>
+                <div class="cart_header">
+                    <div class="icon_fav" onclick="openFavPage()">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="count_fav">0</span>
+                    </div>
+                </div>
+                <div class="cart_header">
+                    <div onclick="open_cart()" class="icon_cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="count_item">0</span>
+                    </div>
+                </div>
+                <div class="total_price">
+                    <p>My Cart:</p>
+                    <p class="price_cart_head">$0</p>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="links container">
+                <i onclick="open_menu()" class="fa-solid fa-bars btn_open_menu"></i>
+                <ul id="menu">
+                    <span onclick="close_menu()" class="bg_overlay"></span>
+                    <i onclick="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
+                    <img class="logo_menu" src="img/logo-black.png" alt="">
+                    <li class="active"><a href="index.html">home</a></li>
+                    <li><a href="all_product.html">all product</a></li>
+                    <li><a href="">about us</a></li>
+                    <li><a href="">contact</a></li>
+                </ul>
+                <div class="loging_signup">
+                    <a href="login.html">login <i class="fa-solid fa-right-to-bracket"></i></a>
+                    <a href="#">sign up <i class="fa-solid fa-user-plus"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="cart">
+        <div class="top_cart">
+            <h3>My Cart <span class="top_items_count">(0 Item in Cart)</span></h3>
+            <span onclick="close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
+        </div>
+
+        <div class="items_in_cart">
+
+        </div>
+
+        <div class="bottom_cart">
+            <div class="total">
+                <p>Cart Subtotal</p>
+                <p class="price_cart_total">$0</p>
+            </div>
+            <div class="button_cart">
+                <a href="checkout.html" class="btn_cart">Proceed to checkout</a>
+                <button class="btn_cart trans-bg">Shop More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout">
+        <div class="container">
+            <form id="orderForm">
+                <div class="left">
+                    <div class="address">
+                        <h2>Delivery Address</h2>
+                        <div class="inputs">
+                            <div class="username-checkout">
+                                <div class="checkout-form-group">
+                                    <label for="name">First Name</label>
+                                    <input type="text" id="name" required>
+                                </div>
+                                <div class="checkout-form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" required>
+                                </div>
+                            </div>
+
+                            <div class="checkout-form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+
+                            <div class="checkout-form-group">
+                                <label for="phone">Phone</label>
+                                <input type="number" id="phone" required>
+                            </div>
+
+                            <div class="checkout-form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="coupon">
+                        <h2>Coupon Code</h2>
+                        <div class="inputs">
+                            <label for="coupon">Coupon Code</label>
+                            <input type="text" id="coupon">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Ordersummary Section -->
+                <div class="right">
+                    <div class="ordersummary">
+                        <h1>Order Summary</h1>
+                        <div class="items">
+                            <!-- Dynamic product items will be displayed here -->
+                        </div>
+                        <p class="total">Total: <span id="total_price_checkout">$0.00</span></p>
+
+                        <!-- Submit Button -->
+                        <div class="button_div">
+                            <button type="submit">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Modal Structure -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Order Successful!</h2>
+            <p>Your order has been placed successfully.</p>
+            <button id="continueShopping">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- /* Modal Styles */ -->
+    <style>
+        /* Black background for body and header when modal is open */
+        body.modal-open {
+            background-color: black;
+        }
+
+        #header.modal-open {
+            background-color: black;
+            color: white;
+            /* Adjust text color if needed */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1000;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+            max-width: 500px;
+            text-align: center;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1001;
+            /* Ensure modal content is above the overlay */
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #continueShopping {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #continueShopping:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <div class="back_to_top">
+        <p>Back to Top</p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="big_row">
+                <img src="img/logo-white.png" alt="">
+                <div class="hotline">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="text">
+                        <h5>Hotline free 24/24:</h5>
+                        <h6>(+100) 123 123 123</h6>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Voluptas dolores officiis natus omnis mollitia aut. Accusantium fugit ducimus
+                    pariatur quisquam ratione quae ad dolorem
+                    odio ullam architecto sed, omnis praesentium.</p>
+            </div>
+
+            <div class="row">
+                <h4>FAQs & Help</h4>
+                <div class="links">
+                    <a href="#">F.A.Q.'s</a>
+                    <a href="#">Ordering Tracking</a>
+                    <a href="#">Contacts</a>
+                    <a href="#">Events</a>
+                    <a href="#">Help Center</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4>Shipping & Delivery</h4>
+                <div class="links">
+                    <a href="#">Delivery Information</a>
+                    <a href="#">Discount</a>
+                    <a href="#">Payment & Shipping</a>
+                    <a href="#">Estimated Delivery Time</a>
+                    <a href="#">Shipping Guid</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4>Information</h4>
+                <div class="links">
+                    <a href="#">Populer</a>
+                    <a href="#">Our Services</a>
+                    <a href="#">Your Account</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms & Condition</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom_footer">
+            <div class="container">
+                <p>Copyright &copy;<span>Topico.</span> all Rights Reserved</p>
+                <div class="payment_img">
+                    <img src="img/payment-1.png" alt="">
+                    <img src="img/payment-2.png" alt="">
+                    <img src="img/payment-3.png" alt="">
+                    <img src="img/payment-4.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("orderForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get form values correctly
+            const firstName = document.getElementById("name").value;
+            const lastName = document.getElementById("lastName").value;
+            const userName = firstName + " " + lastName;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+
+            // Get cart items from localStorage
+            let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+            if (cart.length === 0) {
+                alert("Your cart is empty");
+                return;
+            }
+
+            // Convert cart data to order items format
+            const orderItems = cart.map(item => {
+                console.log("Cart Item:", item); // Debug log
+                return {
+                    product_id: item.id,
+                    quantity: item.quantity
+                };
+            });
+
+
+            // Prepare order data
+            const orderData = {
+                user_name: userName,
+                user_email: email,
+                user_phone: phone,
+                user_address: address,
+                status: "Pending",
+                items: orderItems
+            };
+
+            // Send order data to server
+            fetch("/add-order", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error("Server Error:", data.error); // Log the error details
+                        alert("Error: " + data.message);
+                    } else {
+                        alert("Order submitted successfully! Order ID: " + data.orderId);
+                        localStorage.removeItem("cartItems");
+                    }
+                })
+                .catch(err => {
+                    console.error("Error:", err);
+                    alert("Failed to submit order.");
+                });
+        });
+    </script>
+    <!-- <script type="module">
+        // Import Firebase SDK functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getDatabase, ref, get, set, push } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js";
+
+        // Firebase configuration object
+        const firebaseConfig = {
+            apiKey: "AIzaSyBTfykjKEJFbw4MT0VOpMuBl2vTZqN1a0E",
+            authDomain: "zaid-539bb.firebaseapp.com",
+            projectId: "zaid-539bb",
+            storageBucket: "zaid-539bb.appspot.com",
+            messagingSenderId: "493463305652",
+            appId: "1:493463305652:web:b346573eb59956f7dd06e1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const storage = getStorage(app); // Initialize Firebase Storage
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+            const itemsContainer = document.querySelector(".items");
+            let totalPrice = 0;
+
+            // Loop through each item and add its price to the total price
+            items.forEach(item => {
+                // Calculate the total price for the current item (price * quantity)
+                if (item.count == undefined) {
+                    item.count = 1;
+                }
+                const itemTotalPrice = item.price * item.count;
+
+                // Add the item's total price to the overall total price
+                totalPrice += itemTotalPrice;
+
+                // Display each item in the order summary
+                itemsContainer.innerHTML += `
+            <div class="items_cart">
+                <img src="${item.img}" alt="">
+                <div class="content">
+                    <h4>${item.name}</h4>
+                    <p class="price_cart">Price: <span class ="item_price">₪${item.price}</span></p>
+                    <p class="quantity_cart">Quantity: <span class = "quantity_item">${item.count}</span></p>
+                </div>
+
+                <button onclick="remove_from_cart(${item.id})" class="delete_item">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        `;
+            });
+
+
+            // Update the total price in the checkout section
+            const total_price_checkout = document.getElementById("total_price_checkout");
+            total_price_checkout.innerHTML = "₪" + totalPrice;
+
+            // Add event listener for Place Order button
+            const placeOrderButton = document.querySelector(".button_div button");
+            placeOrderButton.addEventListener("click", placeOrder);
+
+            function placeOrder() {
+                // Gather user information
+                const email = document.getElementById('email').value;
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+
+                // Get cart items from local storage
+                const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+                const totalPrice = document.getElementById("total_price_checkout").innerText.replace('₪', '');
+
+                function generateOrderId() {
+                    return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+                }
+
+                // Prepare order data
+                const orderData = {
+                    orderId: generateOrderId(),
+                    email,
+                    name,
+                    phone,
+                    address,
+                    items,
+                    totalPrice,
+                    orderDate: new Date().toISOString(), // Optional: Include order date
+                    status: 'Pending'
+                };
+
+                // Push order data to Firebase
+                const ordersRef = ref(database, 'orders');
+                push(ordersRef, orderData)
+                    .then(() => {
+                        // Show the success modal
+                        const modal = document.getElementById('successModal');
+                        modal.style.display = 'block';
+
+                        // Clear the cart
+                        localStorage.removeItem("cartItems");
+
+                        // Close the modal when the user clicks on the close button
+                        const closeModal = document.querySelector('.close-modal');
+                        closeModal.onclick = function () {
+                            modal.style.display = 'none';
+                        };
+
+                        // Close the modal and redirect when the user clicks on "Continue Shopping"
+                        const continueShopping = document.getElementById('continueShopping');
+                        continueShopping.onclick = function () {
+                            modal.style.display = 'none';
+                            window.location.href = 'index.html'; // Redirect to the home page or any other page
+                        };
+
+                        // Close the modal when the user clicks outside of it
+                        window.onclick = function (event) {
+                            if (event.target == modal) {
+                                modal.style.display = 'none';
+                            }
+                        };
+                    })
+                    .catch((error) => {
+                        console.error("Error placing order:", error);
+                        alert("Failed to place order. Please try again.");
+                    });
+            }
+
+        });
+
+    </script> -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+            const itemsContainer = document.querySelector(".items");
+            let totalPrice = 0;
+
+            // Loop through each item and add its price to the total price
+            items.forEach((item, index) => {
+                // Calculate the total price for the current item (price * quantity)
+                if (item.count == undefined) {
+                    item.count = 1;
+                }
+
+                const images = item.images || [];
+                let img1 = images[0] || 'default.jpg'; // Use the first image or a default
+                let img2 = images[1] || img1; // Use the second image or fallback to the first
+
+                // Ensure the image paths are valid         ///uploads/
+                img1 = img1.startsWith("http") ? img1 : `${img1}`; // Use `/uploads/` for local images
+                img2 = img2.startsWith("http") ? img2 : `${img2}`; // Use `/uploads/` for local images
+
+
+                const itemTotalPrice = item.price * item.count;
+
+                // Add the item's total price to the overall total price
+                totalPrice += itemTotalPrice;
+
+                // Display each item in the order summary
+                itemsContainer.innerHTML += `
+                <div class="items_cart">
+                    <img src="${img1}" alt="">
+                    <div class="content">
+                        <h4>${item.name}</h4>
+                        <p class="price_cart">Price: <span class ="item_price">₪${item.price}</span></p>
+                        <p class="quantity_cart">Quantity: <span class = "quantity_item">${item.count}</span></p>
+                    </div>
+
+                    <button onclick="remove_from_cart_checkout(${index})" class="delete_item">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+        `;
+            });
+
+
+            // Update the total price in the checkout section
+            const total_price_checkout = document.getElementById("total_price_checkout");
+            total_price_checkout.innerHTML = "₪" + totalPrice;
+
+            // Add event listener for Place Order button
+            const placeOrderButton = document.querySelector(".button_div button");
+            placeOrderButton.addEventListener("click", placeOrder);
+
+            // function placeOrder() {
+            //     // Gather user information
+            //     const email = document.getElementById('email').value;
+            //     const name = document.getElementById('name').value;
+            //     const phone = document.getElementById('phone').value;
+            //     const address = document.getElementById('address').value;
+
+            //     // Get cart items from local storage
+            //     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+            //     const totalPrice = document.getElementById("total_price_checkout").innerText.replace('₪', '');
+
+            //     function generateOrderId() {
+            //         return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+            //     }
+
+            //     // Prepare order data
+            //     const orderData = {
+            //         orderId: generateOrderId(),
+            //         email,
+            //         name,
+            //         phone,
+            //         address,
+            //         items,
+            //         totalPrice,
+            //         orderDate: new Date().toISOString(), // Optional: Include order date
+            //         status: 'Pending'
+            //     };
+
+            //     // Push order data to Firebase
+            //     const ordersRef = ref(database, 'orders');
+            //     push(ordersRef, orderData)
+            //         .then(() => {
+            //             // Show the success modal
+            //             const modal = document.getElementById('successModal');
+            //             modal.style.display = 'block';
+
+            //             // Clear the cart
+            //             localStorage.removeItem("cartItems");
+
+            //             // Close the modal when the user clicks on the close button
+            //             const closeModal = document.querySelector('.close-modal');
+            //             closeModal.onclick = function () {
+            //                 modal.style.display = 'none';
+            //             };
+
+            //             // Close the modal and redirect when the user clicks on "Continue Shopping"
+            //             const continueShopping = document.getElementById('continueShopping');
+            //             continueShopping.onclick = function () {
+            //                 modal.style.display = 'none';
+            //                 window.location.href = 'index.html'; // Redirect to the home page or any other page
+            //             };
+
+            //             // Close the modal when the user clicks outside of it
+            //             window.onclick = function (event) {
+            //                 if (event.target == modal) {
+            //                     modal.style.display = 'none';
+            //                 }
+            //             };
+            //         })
+            //         .catch((error) => {
+            //             console.error("Error placing order:", error);
+            //             alert("Failed to place order. Please try again.");
+            //         });
+            // }
+
+        });
+
+    </script>
+
+    <script>
+        window.onload = function () {
+            // Retrieve cart items from local storage
+            const storedCart = localStorage.getItem('cartItems');
+
+            if (storedCart) {
+                product_cart = JSON.parse(storedCart);
+                getCartItems(); // Refresh cart display
+            }
+        };
+
+    </script>
+
+    <script>
+        // Add this script at the end of your HTML or in a separate JS file
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                const splashScreen = document.getElementById('splash-screen');
+                if (splashScreen) {
+                    splashScreen.style.display = 'none';
+                }
+            }, 300); // 1000 milliseconds = 1 second
+        });
+
+    </script>
+
+
+    <script src="js/cookie.js" defer></script>
+
+
+</body>
+
+</html>

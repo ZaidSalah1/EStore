@@ -1,0 +1,55 @@
+<!-- header.html -->
+<header>
+    <div class="container top-nav">
+        <a href="#" class="logo"><img src="img/logov2.png" alt=""></a>
+        <div class="searchContainer">
+            <form id="searchForm" action="search_results.html" class="search">
+                <input type="search" id="searchInput" placeholder="Search for product">
+                <button type="submit">Search</button>
+            </form>
+            <div class="searchDropdown"></div>
+        </div>
+        <div class="test">
+            <div class="cart_header">
+                <div class="icon_language">
+                    <i class="fa-solid fa-globe"></i>
+                    <span class="language">ENG</span>
+                </div>
+            </div>
+            <div class="cart_header">
+                <div class="icon_fav" onclick="openFavPage()">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="count_fav">0</span>
+                </div>
+            </div>
+            <div class="cart_header">
+                <div onclick="open_cart()" class="icon_cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="count_item">0</span>
+                </div>
+            </div>
+            <div class="total_price">
+                <p>My Cart:</p>
+                <p class="price_cart_head">$0</p>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="links container">
+            <i onclick="open_menu()" class="fa-solid fa-bars btn_open_menu"></i>
+            <ul id="menu">
+                <span onclick="close_menu()" class="bg_overlay"></span>
+                <i onclick="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
+                <img class="logo_menu" src="img/logo-black.png" alt="">
+                <li class="active"><a href="index.html">home</a></li>
+                <li><a href="all_product.html">all product</a></li>
+                <li><a href="">about us</a></li>
+                <li><a href="">contact</a></li>
+            </ul>
+            <div class="loging_signup">
+                <a href="login.html">login <i class="fa-solid fa-right-to-bracket"></i></a>
+                <a href="#">sign up <i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </nav>
+</header>

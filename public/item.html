@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTech</title>
+    <link rel="icon" type="image/png" href="img/store icon.png">
+    <!--File Css-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/item_detail.css">
+    <!--Font Awesom-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+</head>
+
+<body>
+
+
+    <div id="splash-screen">
+        <img src="img/logov2.png" alt="Splash Image">
+    </div>
+
+
+    <header>
+        <div class="container top-nav">
+            <a href="#" class="logo"><img src="img/logov2.png" alt=""></a>
+            <div class="searchContainer">
+                <form id="searchForm" action="search_results.html" class="search">
+                    <input type="search" id="searchInput" placeholder="Search for product">
+                    <button type="submit">Search</button>
+                </form>
+                <div class="searchDropdown"></div>
+            </div>
+            <div class="test">
+                <div class="cart_header">
+                    <div class="icon_language">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="language">ENG</span>
+                    </div>
+                </div>
+                <div class="cart_header">
+                    <div class="icon_fav" onclick="openFavPage()">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="count_fav">0</span>
+                    </div>
+                </div>
+                <div class="cart_header">
+                    <div onclick="open_cart()" class="icon_cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="count_item">0</span>
+                    </div>
+                </div>
+                <div class="total_price">
+                    <p>My Cart:</p>
+                    <p class="price_cart_head">$0</p>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="links container">
+                <i onclick="open_menu()" class="fa-solid fa-bars btn_open_menu"></i>
+                <ul id="menu">
+                    <span onclick="close_menu()" class="bg_overlay"></span>
+                    <i onclick="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
+                    <img class="logo_menu" src="img/logo-black.png" alt="">
+                    <li class="active"><a href="index.html">home</a></li>
+                    <li><a href="all_product.html">all product</a></li>
+                    <li><a href="">about us</a></li>
+                    <li><a href="">contact</a></li>
+                </ul>
+                <div class="loging_signup">
+                    <a href="login.html">login <i class="fa-solid fa-right-to-bracket"></i></a>
+                    <a href="#">sign up <i class="fa-solid fa-user-plus"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="cart">
+        <div class="top_cart">
+            <h3>My Cart <span class="top_items_count">(0 Item in Cart)</span></h3>
+            <span onclick="close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
+        </div>
+
+        <div class="items_in_cart">
+
+        </div>
+
+        <div class="bottom_cart">
+            <div class="total">
+                <p>Cart Subtotal</p>
+                <p class="price_cart_total">$0</p>
+            </div>
+            <div class="button_cart">
+                <a href="checkout.html" class="btn_cart">Proceed to checkout</a>
+                <button class="btn_cart trans-bg">Shop More</button>
+            </div>
+        </div>
+    </div>
+
+    .
+
+    <div class="item_detail">
+        <div class="container">
+            <div class="img_item">
+                <div class="big_img">
+                    <img id="bigImg" src="" alt="Product Image">
+                </div>
+    
+                <div class="sm_imgs" id="smallImgContainer">
+                    <!-- Small images will be dynamically inserted here -->
+                </div>
+            </div>
+    
+            <div class="details_item">
+                <h1 class="name" id="name">Product Name</h1>
+                <div class="stars" id="stars">
+                    <!-- Star ratings will be dynamically inserted here -->
+                </div>
+    
+                <div class="price">
+                    <p><span id="price"></span></p>
+                    <p class="old_price" id="old_price"></p>
+                </div>
+    
+                <h5> Availability: <span class="availability" id="availability"> In Stock</span></h5>
+                <h4 class="count" id="quantity"></h4>
+    
+                <h5>Description: <span id="description"></span></h5>
+                
+                <p class="item_description" id="item_description"></p>
+    
+                
+    
+                <div class="add_fav">
+                    <!-- Add to cart or add to favorites button can be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <section class="slide slide_sale">
+        <div class="container">
+            <div class="sale_sec mySwiper">
+                <div class="top_slide">
+                    <h2>On Sale <span>Product</span></h2>
+                </div>
+
+                <div id="swiper_items_sale" class="products swiper-wrapper">
+
+
+                </div>
+
+                <div class="swiper-button-next btn_swip"></div>
+
+                <div class="swiper-button-prev btn_swip"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="back_to_top">
+        <p>Back to Top</p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="big_row">
+                <img src="img/logo-white.png" alt="">
+                <div class="hotline">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="text">
+                        <h5>Hotline free 24/24:</h5>
+                        <h6>(+100) 123 123 123</h6>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Voluptas dolores officiis natus omnis mollitia aut. Accusantium fugit ducimus
+                    pariatur quisquam ratione quae ad dolorem
+                    odio ullam architecto sed, omnis praesentium.</p>
+            </div>
+
+            <div class="row">
+                <h4>FAQs & Help</h4>
+                <div class="links">
+                    <a href="#">F.A.Q.'s</a>
+                    <a href="#">Ordering Tracking</a>
+                    <a href="#">Contacts</a>
+                    <a href="#">Events</a>
+                    <a href="#">Help Center</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4>Shipping & Delivery</h4>
+                <div class="links">
+                    <a href="#">Delivery Information</a>
+                    <a href="#">Discount</a>
+                    <a href="#">Payment & Shipping</a>
+                    <a href="#">Estimated Delivery Time</a>
+                    <a href="#">Shipping Guid</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4>Information</h4>
+                <div class="links">
+                    <a href="#">Populer</a>
+                    <a href="#">Our Services</a>
+                    <a href="#">Your Account</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms & Condition</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom_footer">
+            <div class="container">
+                <p>Copyright &copy;<span>Topico.</span> all Rights Reserved</p>
+                <div class="payment_img">
+                    <img src="img/payment-1.png" alt="">
+                    <img src="img/payment-2.png" alt="">
+                    <img src="img/payment-3.png" alt="">
+                    <img src="img/payment-4.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- <script  src="js/main.js"></script> -->
+    <script src="js/swiper.js"></script>
+    <!-- <script type="module" src="js/items_home.js"></script> -->
+    <script  src="js/index.js"></script> 
+    <script  src="js/cookie.js"></script> 
+    <script>
+        window.onload = function () {
+            const storedCart = localStorage.getItem('cartItems');
+            if (storedCart) {
+                product_cart = JSON.parse(storedCart);
+                getCartItems();
+
+            }
+        };
+    </script>
+
+    <script>
+        // Add this script at the end of your HTML or in a separate JS file
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                const splashScreen = document.getElementById('splash-screen');
+                if (splashScreen) {
+                    splashScreen.style.display = 'none';
+                }
+            }, 800); // 1000 milliseconds = 1 second
+        });
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+<!-- <script>
+    // Function to get the product ID from the URL
+    function getProductIdFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('id'); // Get the product ID from the URL
+    }
+
+    // Fetch the product data
+    fetch('js/items.json')
+        .then(response => response.json())
+        .then(data => {
+            const productId = getProductIdFromUrl(); // Get the product ID from URL
+            const product = data.find(item => item.id == productId); // Find the product
+
+            if (product) {
+                const bigImg = document.querySelector('.big_img img');
+                const smImgsContainer = document.querySelector('.sm_imgs');
+                const nameElement = document.querySelector('.details_item .name');
+                const stars = document.querySelector('.stars');
+                const priceElement = document.querySelector('.price span');
+                const oldPriceElement = document.querySelector('.old_price');
+                const description = document.querySelector('.item_decription');
+                const availabilityElement = document.querySelector('.availability');
+                // Set product details
+                bigImg.src = product.img; // Set big image
+                nameElement.innerText = product.name; // Set product name
+                priceElement.innerText = `₪${product.price}`; // Set price
+                oldPriceElement.innerText = `₪${product.old_price}`; // Set old price
+                description.innerText = product.description || 'No description available'; // Set description
+                availabilityElement.innerText =  product.availability || 'No description available';
+
+                // Clear previous small images
+                smImgsContainer.innerHTML = '';
+
+                // Set small images
+                product.images.forEach((image, index) => {
+    const smImg = document.createElement('img');
+    smImg.src = image;
+    smImg.alt = `Product image ${index + 1}`;
+    smImg.onclick = () => changeItemImage(smImg.src); // Add the event listener here
+    smImgsContainer.appendChild(smImg);
+});
+
+
+                // Set stars (assuming 5 stars max)
+                stars.innerHTML = '';
+                for (let i = 0; i < 5; i++) {
+                    const star = document.createElement('i');
+                    star.className = 'fa-solid fa-star';
+                    stars.appendChild(star);
+                }
+            } else {
+                document.querySelector('.details_item').innerText = 'Product not found';
+            }
+        })
+        .catch(error => console.error('Error fetching product data:', error));
+</script> -->

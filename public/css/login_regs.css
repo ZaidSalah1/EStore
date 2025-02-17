@@ -1,0 +1,109 @@
+:root {
+    --main-color: #fcb700;
+    --dark-color: #222222;
+    --parg-color: #66666666;
+    --dark-red: #d01418;
+    --border-color: #6666662a;
+    --name-item : #0066c0;
+}
+.sign_up_sec,
+.sec_form {
+    margin: 240px 0 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.sign_up_sec {
+    display: flex; /* Ensure the sign-up section also uses flex */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form_container {
+    width: 350px;
+    background: #fff;
+    box-shadow: rgb(0, 0, 0,0.35) 0px 5px 15px;
+
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 20px 30px;
+}
+
+.title {
+    color: var(--dark-color);
+    text-align: center;
+    margin: 10px 0 30px;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 15px;
+}
+
+.form input {
+    border-radius: 5px;
+    border: 1px solid #c0c0c0;
+    padding: 1px 15px;
+    outline: none;
+    padding: 12px 15px;
+}
+
+.form input:focus {
+    border-color: var(--main-color);
+}
+
+.page-link {
+    margin: 0;
+    text-align: end;
+}
+
+.page-link .page-link-label {
+    color: var(--dark-color);
+    font-size: 12px;
+    transition: 0.2s ease;
+}
+
+
+.page-link .page-link-label:hover {
+   color: var(--main-color); 
+}
+
+.form-btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+    background: var(--main-color);
+    cursor: pointer;
+    box-shadow: rgb(0, 0, 0, 0.25) 0px 3px 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.sign-up-label {
+    margin: 0;
+    font-size: 12px;
+    color: var(--dark-color);
+
+}
+.sign-in-label .sign-in-link,
+.sign-up-label .sign-up-link {
+    color: var(--main-color);
+    font-size: 14px;
+    margin-left: 2px;
+    text-decoration: underline;
+}
+
+
+
+
+
