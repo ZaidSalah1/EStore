@@ -24,14 +24,6 @@ connection.connect((err) => {
     }
 });
 
-// Use the pool to query the database
-pool.query('SELECT * FROM products', (err, results) => {
-    if (err) {
-        console.log('Error fetching products:', err);
-        return;
-    }
-    console.log('Products:', results);
-});
 
 
 app.use(express.json());
