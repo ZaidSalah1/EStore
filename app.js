@@ -8,15 +8,20 @@ const multer = require("multer"); // Import multer
 const port = process.env.PORT || 1001;
 const BASE_URL = process.env.BASE_URL || ""; // Define a base URL from env variables
 
-// Create a connection pool
-const pool = mysql.createPool({
+const connection = mysql.createConnection({
     host: process.env.DB_HOST,  // Set by Render
     user: process.env.DB_USER,  // Set by Render
     password: process.env.DB_PASSWORD,  // Set by Render
-    database: process.env.DB_NAME,  // Set by Render
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+    database: process.env.DB_NAME  // Set by Render
+});
+
+connection.connect((err) => {
+    if (err) {
+        console.log("Error connection: ", err.stack);
+        return;
+    } else {
+        console.log("Connected!!!");
+    }
 });
 
 // Use the pool to query the database
