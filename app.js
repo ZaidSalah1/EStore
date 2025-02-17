@@ -9,8 +9,8 @@ const port = process.env.PORT || 1001;
 const BASE_URL = process.env.BASE_URL || ""; // Define a base URL from env variables
 
 
-// Using connection pooling
-const pool = mysql.createPool({
+// Using connection connectioning
+const connection = mysql.createPool({
     host: process.env.DB_HOST,  // Set by Render
     user: process.env.DB_USER,  // Set by Render
     password: process.env.DB_PASSWORD,  // Set by Render
@@ -22,19 +22,19 @@ const pool = mysql.createPool({
 });
 
 // Check connection
-pool.getConnection((err, connection) => {
+connection.getConnection((err, connection) => {
     if (err) {
         console.log("Error connection: ", err.stack);
         return;
     } else {
         console.log("Connected to the database!");
-        connection.release(); // Release connection back to pool
+        connection.release(); // Release connection back to connection
     }
 });
 
 // Example endpoint to fetch products
 app.get('/products', (req, res) => {
-    pool.query('SELECT * FROM products', (err, results) => {
+    connection.query('SELECT * FROM products', (err, results) => {
         if (err) {
             console.error("Error fetching products:", err);
             return res.status(500).json({ error: 'Error fetching products' });
