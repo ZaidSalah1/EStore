@@ -29,14 +29,16 @@ const connection = mysql.createPool({
 });
 
 
-connection.connect((err) => {
+connection.getConnection((err, conn) => {
     if (err) {
         console.log("Error connection: ", err.stack);
         return;
     } else {
         console.log("Connected!!!");
+        conn.release();  // Make sure to release the connection back to the pool
     }
 });
+
 
 // Serve static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
