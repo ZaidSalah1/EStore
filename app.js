@@ -15,6 +15,7 @@ const connection = mysql.createConnection({
     database: process.env.DB_NAME  // Set by Render
 });
 
+
 connection.connect((err) => {
     if (err) {
         console.log("Error connection: ", err.stack);
@@ -23,7 +24,6 @@ connection.connect((err) => {
         console.log("Connected!!!");
     }
 });
-
 
 
 app.use(express.json());
